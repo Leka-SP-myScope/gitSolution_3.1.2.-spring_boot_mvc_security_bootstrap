@@ -4,7 +4,6 @@ import com.lekasp.spring_boot.first_spring_boot_mvc_security.dao.UserRepository;
 import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -22,13 +21,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUser() {
-        return userRepository.getAllUser();
+        return userRepository.findAll();
     }
 
     @Override
     public Optional<User> getUserByName(String name) {
         Optional<User> optionalUser = userRepository.getUserByName(name);
-        if (optionalUser.isPresent() && name != null) {
+        if (optionalUser.isPresent()) {
             return userRepository.getUserByName(name);
         }
         throw new NoResultException("No User by: " + name + " present");
@@ -37,26 +36,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent() && id != null) {
+        if (optionalUser.isPresent()) {
             return optionalUser.get();
         }
         throw new NoResultException("No User by: " + id + " present");
     }
 
     @Override
-    @Transactional
     public void saveUser(User user) {
-        userRepository.saveUser(user);
+        userRepository.save(user);
     }
 
-//    @Override
-//    @Transactional
-//    public void updateUser(User user) {
-//        userDao.updateUser(user);
-//    }
-
     @Override
-    @Transactional
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
