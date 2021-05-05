@@ -52,7 +52,8 @@ public class UserDaoImpl implements UserDao {
 //        Session session = entityManager.unwrap(Session.class);
 //        session.saveOrUpdate(user);
 
-        entityManager.merge(user);
+        User newUser = entityManager.merge(user);
+        user.setId(newUser.getId());
     }
 
 //    @Override
