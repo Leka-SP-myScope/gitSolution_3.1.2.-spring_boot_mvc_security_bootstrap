@@ -1,12 +1,12 @@
 package com.lekasp.spring_boot.first_spring_boot_mvc_security.dao;
 
 import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
@@ -19,12 +19,14 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUser() {
-        return entityManager.createQuery("select u from User u", User.class).getResultList();
+        Session session = entityManager.unwrap(Session.class);
+        return session.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override
     public Optional<User> findById(Long id) {
-        TypedQuery<User> query = entityManager.createQuery(
+        Session session = entityManager.unwrap(Session.class);
+        TypedQuery<User> query = session.createQuery(
                 "select u from User u where u.id = :id", User.class);
         if (id != null) {
             query.setParameter("id", id);
@@ -35,26 +37,30 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-        entityManager.persist(user);
+        Session session = entityManager.unwrap(Session.class);
+        session.saveOrUpdate(user);
     }
 
-    @Override
-    public void updateUser(User user) {
-        entityManager.merge(user);
-    }
+//    @Override
+//    public void updateUser(User user) {
+//        Session session = entityManager.unwrap(Session.class);
+//        session.merge(user);
+//    }
 
     @Override
     public void deleteById(Long id) {
-        TypedQuery<User> query = entityManager.createQuery(
+        Session session = entityManager.unwrap(Session.class);
+        TypedQuery<User> query = session.createQuery(
                 "select u from User u where u.id = :id", User.class);
         query.setParameter("id", id);
         User user = query.getResultList().stream().findAny().orElse(null);
-        entityManager.remove(user);
+        session.remove(user);
     }
 
     @Override
     public Optional<User> getUserByName(String name) {
-        TypedQuery<User> query = entityManager.createQuery(
+        Session session = entityManager.unwrap(Session.class);
+        TypedQuery<User> query = session.createQuery(
                 "select u from User u JOIN FETCH u.roles where u.name = :name", User.class);
         if (name != null) {
             query.setParameter("name", name);
