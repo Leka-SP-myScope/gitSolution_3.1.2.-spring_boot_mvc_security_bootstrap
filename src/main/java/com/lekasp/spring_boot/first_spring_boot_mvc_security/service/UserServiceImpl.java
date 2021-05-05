@@ -1,6 +1,6 @@
 package com.lekasp.spring_boot.first_spring_boot_mvc_security.service;
 
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.dao.UserDao;
+import com.lekasp.spring_boot.first_spring_boot_mvc_security.dao.UserRepository;
 import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,30 +13,30 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public List<User> getAllUser() {
-        return userDao.getAllUser();
+        return userRepository.getAllUser();
     }
 
     @Override
     public Optional<User> getUserByName(String name) {
-        Optional<User> optionalUser = userDao.getUserByName(name);
+        Optional<User> optionalUser = userRepository.getUserByName(name);
         if (optionalUser.isPresent() && name != null) {
-            return userDao.getUserByName(name);
+            return userRepository.getUserByName(name);
         }
         throw new NoResultException("No User by: " + name + " present");
     }
 
     @Override
     public User findById(Long id) {
-        Optional<User> optionalUser = userDao.findById(id);
+        Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent() && id != null) {
             return optionalUser.get();
         }
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void saveUser(User user) {
-        userDao.saveUser(user);
+        userRepository.saveUser(user);
     }
 
 //    @Override
@@ -58,6 +58,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteById(Long id) {
-        userDao.deleteById(id);
+        userRepository.deleteById(id);
     }
 }
