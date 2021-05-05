@@ -24,14 +24,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public Optional<User> getUserByName(String name) {
-        Optional<User> optionalUser = userRepository.getUserByName(name);
-        if (optionalUser.isPresent()) {
-            return userRepository.getUserByName(name);
-        }
-        throw new NoResultException("No User by: " + name + " present");
-    }
+//    @Override
+//    public Optional<User> getUserByName(String name) {
+//        Optional<User> optionalUser = userRepository.getUserByName(name);
+//        if (optionalUser.isPresent()) {
+//            return userRepository.getUserByName(name);
+//        }
+//        throw new NoResultException("No User by: " + name + " present");
+//    }
 
     @Override
     public User findById(Long id) {
