@@ -50,9 +50,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            userRepository.deleteById(id);
+        if (optionalUser.isEmpty()) {
+            throw new NoResultException("No User with: " + id + " present");
         }
-        throw new NoResultException("No User with: " + id + " present");
+        userRepository.deleteById(id);
     }
 }
