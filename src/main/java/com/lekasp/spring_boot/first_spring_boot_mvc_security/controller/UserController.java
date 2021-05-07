@@ -3,6 +3,7 @@ package com.lekasp.spring_boot.first_spring_boot_mvc_security.controller;
 import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
 import com.lekasp.spring_boot.first_spring_boot_mvc_security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(@Qualifier("userServiceImpl") UserService userService) {
         this.userService = userService;
     }
 

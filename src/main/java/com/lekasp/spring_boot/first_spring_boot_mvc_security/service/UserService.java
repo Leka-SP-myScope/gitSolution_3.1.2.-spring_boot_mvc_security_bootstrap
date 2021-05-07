@@ -9,7 +9,7 @@ public interface UserService {
 
     List<User> getAllUser();
 
-//    Optional<User> getUserByName(String name);
+    Optional<User> getUserByName(String name);
 
     User findById(Long id);
 

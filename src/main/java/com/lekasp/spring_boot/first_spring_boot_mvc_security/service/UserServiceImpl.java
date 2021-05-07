@@ -1,7 +1,7 @@
 package com.lekasp.spring_boot.first_spring_boot_mvc_security.service;
 
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.dao.UserRepository;
 import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
+import com.lekasp.spring_boot.first_spring_boot_mvc_security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +24,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-//    @Override
-//    public Optional<User> getUserByName(String name) {
-//        Optional<User> optionalUser = userRepository.getUserByName(name);
-//        if (optionalUser.isPresent()) {
-//            return userRepository.getUserByName(name);
-//        }
-//        throw new NoResultException("No User by: " + name + " present");
-//    }
+    @Override
+    public Optional<User> getUserByName(String name) {
+        Optional<User> optionalUser = userRepository.getUserByName(name);
+        if (optionalUser.isPresent()) {
+            return optionalUser;
+        }
+        throw new NoResultException("No User by: " + name + " present");
+    }
 
     @Override
     public User findById(Long id) {
