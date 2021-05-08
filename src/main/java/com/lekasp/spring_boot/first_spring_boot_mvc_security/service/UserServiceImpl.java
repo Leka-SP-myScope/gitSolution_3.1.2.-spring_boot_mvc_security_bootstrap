@@ -25,21 +25,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserByName(String name) {
-        Optional<User> optionalUser = userRepository.getUserByName(name);
-        if (optionalUser.isPresent()) {
-            return optionalUser;
-        }
-        throw new NoResultException("No User by: " + name + " present");
+    public User getUserByName(String name) {
+        return userRepository.getUserByName(name)
+                .orElseThrow(() -> new NoResultException("No User by: " + name + " present"));
+//        Optional<User> optionalUser = userRepository.getUserByName(name);
+//        if (optionalUser.isPresent()) {
+//            return optionalUser;
+//        }
+//        throw new NoResultException("No User by: " + name + " present");
     }
 
     @Override
     public User findById(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            return optionalUser.get();
-        }
-        throw new NoResultException("No User with: " + id + " present");
+        return userRepository.findById(id).orElseThrow(() -> new NoResultException("No User with: " + id + " present"));
+//        Optional<User> optionalUser = userRepository.findById(id);
+//        if (optionalUser.isPresent()) {
+//            return optionalUser.get();
+//        }
+//        throw new NoResultException("No User with: " + id + " present");
     }
 
     @Override

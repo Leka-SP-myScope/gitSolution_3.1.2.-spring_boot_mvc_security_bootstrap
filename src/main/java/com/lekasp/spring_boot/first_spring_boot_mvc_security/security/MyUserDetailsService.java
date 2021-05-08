@@ -22,7 +22,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = userService.getUserByName(username);
+        Optional<User> userOptional = Optional.ofNullable(userService.getUserByName(username));
         if (userOptional.isPresent()) {
             return userOptional.get();
         }
