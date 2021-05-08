@@ -37,7 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new NoResultException("No User with: " + id + " present"));
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NoResultException("No User with: " + id + " present"));
 //        Optional<User> optionalUser = userRepository.findById(id);
 //        if (optionalUser.isPresent()) {
 //            return optionalUser.get();
@@ -52,10 +53,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isEmpty()) {
-            throw new NoResultException("No User with: " + id + " present");
-        }
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id)
+                .orElseThrow(() ->new NoResultException("No User with: " + id + " present"));
+        userRepository.deleteById(user.getId());
+//        Optional<User> optionalUser = userRepository.findById(id);
+//        if (optionalUser.isEmpty()) {
+//            throw new NoResultException("No User with: " + id + " present");
+//        }
+//        userRepository.deleteById(id);
     }
 }
