@@ -21,7 +21,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return Optional.ofNullable(userService.getUserByName(username))
+        return Optional.of(userService.getUserByName(username))
                 .orElseThrow(() -> new UsernameNotFoundException("The entered username : "
                         + username + " is incorrect. Please, change your username"));
     }
