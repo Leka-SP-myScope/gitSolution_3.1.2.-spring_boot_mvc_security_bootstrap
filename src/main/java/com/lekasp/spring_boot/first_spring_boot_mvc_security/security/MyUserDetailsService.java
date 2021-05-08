@@ -1,6 +1,5 @@
 package com.lekasp.spring_boot.first_spring_boot_mvc_security.security;
 
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
 import com.lekasp.spring_boot.first_spring_boot_mvc_security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,10 +21,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = Optional.ofNullable(userService.getUserByName(username));
-        if (userOptional.isPresent()) {
-            return userOptional.get();
-        }
-        throw new UsernameNotFoundException("The entered user is incorrect: " + username);
+        return Optional.ofNullable(userService.getUserByName(username))
+                .orElseThrow(() -> new UsernameNotFoundException("The entered username : "
+                        + username + " is incorrect. Please, change your username"));
     }
 }
