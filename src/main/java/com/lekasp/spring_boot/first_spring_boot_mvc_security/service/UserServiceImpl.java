@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,22 +27,12 @@ public class UserServiceImpl implements UserService {
     public User getUserByName(String name) {
         return userRepository.getUserByName(name)
                 .orElseThrow(() -> new NoResultException("No User by: " + name + " present"));
-//        Optional<User> optionalUser = userRepository.getUserByName(name);
-//        if (optionalUser.isPresent()) {
-//            return optionalUser;
-//        }
-//        throw new NoResultException("No User by: " + name + " present");
     }
 
     @Override
     public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new NoResultException("No User with: " + id + " present"));
-//        Optional<User> optionalUser = userRepository.findById(id);
-//        if (optionalUser.isPresent()) {
-//            return optionalUser.get();
-//        }
-//        throw new NoResultException("No User with: " + id + " present");
     }
 
     @Override
@@ -54,12 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() ->new NoResultException("No User with: " + id + " present"));
+                .orElseThrow(() -> new NoResultException("No User with: " + id + " present"));
         userRepository.deleteById(user.getId());
-//        Optional<User> optionalUser = userRepository.findById(id);
-//        if (optionalUser.isEmpty()) {
-//            throw new NoResultException("No User with: " + id + " present");
-//        }
-//        userRepository.deleteById(id);
     }
 }
