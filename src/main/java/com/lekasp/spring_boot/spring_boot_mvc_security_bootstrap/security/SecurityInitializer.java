@@ -1,4 +1,4 @@
-package com.lekasp.spring_boot.first_spring_boot_mvc_security.security;
+package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

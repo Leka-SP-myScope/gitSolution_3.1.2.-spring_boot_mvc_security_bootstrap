@@ -1,6 +1,6 @@
-package com.lekasp.spring_boot.first_spring_boot_mvc_security.service;
+package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 
 import java.util.List;
 

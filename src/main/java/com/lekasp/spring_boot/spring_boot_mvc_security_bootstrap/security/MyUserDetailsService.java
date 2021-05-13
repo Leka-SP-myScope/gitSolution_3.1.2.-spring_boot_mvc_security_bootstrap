@@ -1,6 +1,6 @@
-package com.lekasp.spring_boot.first_spring_boot_mvc_security.security;
+package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.security;
 
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.service.UserService;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

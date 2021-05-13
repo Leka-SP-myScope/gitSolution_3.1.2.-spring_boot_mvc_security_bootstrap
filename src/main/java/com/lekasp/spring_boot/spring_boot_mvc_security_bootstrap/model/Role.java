@@ -1,4 +1,4 @@
-package com.lekasp.spring_boot.first_spring_boot_mvc_security.model;
+package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,6 +1,6 @@
-package com.lekasp.spring_boot.first_spring_boot_mvc_security.repository;
+package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository;
 
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,7 +1,7 @@
-package com.lekasp.spring_boot.first_spring_boot_mvc_security.service;
+package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.model.User;
-import com.lekasp.spring_boot.first_spring_boot_mvc_security.repository.UserRepository;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
