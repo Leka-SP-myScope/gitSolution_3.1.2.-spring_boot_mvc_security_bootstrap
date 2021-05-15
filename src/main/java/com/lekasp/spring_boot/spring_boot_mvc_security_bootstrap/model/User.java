@@ -15,10 +15,10 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "first_name")
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "last_name")
     private String surname;
 
     @Column(name = "password")
@@ -26,6 +26,9 @@ public class User implements UserDetails {
 
     @Column(name = "age")
     private int age;
+
+    @Column(name = "email")
+    private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Role> roles;
@@ -39,12 +42,15 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User(Long id, String name, String surname, String password, int age, Set<Role> roles) {
+
+
+    public User(Long id, String name, String surname, String password, int age, String email, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.age = age;
+        this.email = email;
         this.roles = roles;
     }
 
@@ -84,6 +90,14 @@ public class User implements UserDetails {
         this.age = age;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -98,7 +112,10 @@ public class User implements UserDetails {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", password='" + password + '\'' +
                 ", age=" + age +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 
