@@ -1,0 +1,14 @@
+.form-signin {
+  width: 330px;
+  max-width: 350px;
+  max-height: 220px;
+  height: 200px;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+input[type="password" i] {
+  -webkit-text-security: disc !important;
+}
+
