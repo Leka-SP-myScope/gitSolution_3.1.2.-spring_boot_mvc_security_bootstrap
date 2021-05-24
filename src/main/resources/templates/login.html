@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>login2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+
+<body>
+<div>
+    <form class="form-signin" action="/login" method="post">
+        <h2>Please sign in</h2>
+        <span th:if="${error}">
+            <div class="alert alert-danger" role="alert">Bad credentials</div>
+        </span>
+        <span th:if="${logout}">
+            <div class="alert alert-info" role="alert">You've been logged out successfully</div>
+        </span>
+        <div class="form-group"><input class="form-control" type="email" id="email" name="email" placeholder="Email address" required=""></div>
+        <div class="form-group"><input class="form-control" type="password" id="password" name="password" placeholder="Password"></div>
+        <div class="form-group"><button class="btn btn-primary btn-block btn-lg" type="submit">Sign in</button></div>
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
