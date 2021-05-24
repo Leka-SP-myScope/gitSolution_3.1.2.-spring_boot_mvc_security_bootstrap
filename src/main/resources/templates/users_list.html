@@ -25,6 +25,7 @@
             <tr th:each="message : ${allUser}">
                 <td th:text="${message.name}"></td>
                 <td th:text="${message.surname}"></td>
+                <td><label>Hello <span th:text="${message.name}"></span></label></td>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                     <td th:text="${message.password}"></td>
                 </div>
