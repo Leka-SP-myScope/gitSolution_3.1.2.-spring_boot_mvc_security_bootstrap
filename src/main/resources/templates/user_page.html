@@ -9,64 +9,75 @@
     <link rel="stylesheet" href="/Navigation-Clean.css" type="text/css">
 </head>
 
-<body>
+<body th:each="message : ${allUser}">
 <nav class="navbar navbar-light navbar-expand-md navigation-clean">
     <div class="container-fluid">
-        <div class="container my-nav-container1"><label class="text-lowercase text-center text-light" id="email" for="email"><strong>user@mail.ru</strong></label><label class="text-center">with roles:</label><label class="text-uppercase text-left" id="role" for="role">user</label></div><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container my-nav-container1"><b><label class="text-lowercase text-center text-light" id="email"
+                                                        for="email" th:text="${message.email}"><strong></strong></label></b><label
+                class="text-center">with roles:</label><label class="text-uppercase text-left" id="role"
+                                                              for="role">user</label></div>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link text-center text-secondary my-nav-link-logout" href="#">Logout</a></li>
+                <li class="nav-item"><a class="nav-link text-center text-secondary my-nav-link-logout"
+                                        href="/login">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container-fluid my-table">
-    <div class="row">
-        <div class="col-md-2">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item my-nav1"><a class="nav-link active" href="#">User</a></li>
-            </ul>
-        </div>
-        <div class="col-md-10">
-            <h2>User information-page<br></h2>
-            <div class="table-responsive table-bordered">
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                    <tr>
-                        <th>About user</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="inner-table" style="border-left: 0;border-right: 0;border-bottom: 0;">
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead class="text-center">
-                                    <tr>
-                                        <th class="border-left-0">ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Age</th>
-                                        <th>Email</th>
-                                        <th class="border-right-0">Role</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                    <tr>
-                                        <td class="border-left-0">Cell 1</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 3</td>
-                                        <td>Cell 4</td>
-                                        <td>Cell 5</td>
-                                        <td class="border-right-0">Cell 6</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+<div class="row no-gutters">
+    <div class="col-2">
+        <div id="v-pills-tab" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical"><a
+                id="v-pills-user-tab" class="nav-link active" href="#v-pills-user" data-toggle="pill" role="tab"
+                aria-controls="v-pills-user" aria-selected="true">User</a></div>
+    </div>
+    <div class="col-10"
+         style="background: var(--light);height: 100vh;padding-right: 20px;padding-left: 20px;max-width: 100%;width: 100%;">
+        <div id="v-pills-tabContent" class="tab-content">
+            <div id="v-pills-user" class="tab-pane fade show active" role="tabpanel">
+                <div class="col-md-10">
+                    <h2>User information-page<br></h2>
+                    <div class="table-responsive table-bordered">
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>About user</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="inner-table" style="border-left: 0;border-right: 0;border-bottom: 0;">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead class="text-center">
+                                            <tr>
+                                                <th class="border-left-0">ID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Age</th>
+                                                <th>Email</th>
+                                                <th class="border-right-0">Role</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="text-center">
+                                            <tr th:each="message : ${allUser}">
+                                                <td class="border-left-0" th:text="${message.id}">Cell 1</td>
+                                                <td th:text="${message.name}">Cell 2</td>
+                                                <td th:text="${message.surname}">Cell 3</td>
+                                                <td th:text="${message.age}">Cell 4</td>
+                                                <td th:text="${message.email}">Cell 5</td>
+                                                <td class="border-right-0" th:text="${(message.roles).getRole()}">Cell 6</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

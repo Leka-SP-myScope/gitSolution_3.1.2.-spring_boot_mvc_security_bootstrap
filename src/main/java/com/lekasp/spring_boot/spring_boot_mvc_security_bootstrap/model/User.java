@@ -42,8 +42,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-
-
     public User(Long id, String name, String surname, String password, int age, String email, Set<Role> roles) {
         this.id = id;
         this.name = name;

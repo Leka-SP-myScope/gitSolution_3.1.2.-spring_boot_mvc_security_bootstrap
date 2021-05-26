@@ -227,3 +227,33 @@ tr {
   text-align: center;
 }
 
+.row.no-gutters {
+  max-width: 100%;
+  width: 100%;
+}
+
+.col-2 {
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 15px;
+}
+
+#v-pills-tab {
+  width: 100%;
+}
+
+#v-pills-user {
+  width: 100%;
+}
+
+.col-md-10 {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  height: 100vh;
+  max-height: 100vh;
+  padding-top: 10px;
+}
+

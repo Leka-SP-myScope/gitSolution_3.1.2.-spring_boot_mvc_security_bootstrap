@@ -28,12 +28,12 @@ public class UserController {
         return "users_list";
     }
 
-    @GetMapping("/user")
-    public String getAllUser(Model model) {
-        List<User> allUser = userService.getAllUser();
-        model.addAttribute("allUser", allUser);
-        return "users_list";
-    }
+//    @GetMapping("/user")
+//    public String getAllUser(Model model) {
+//        List<User> allUser = userService.getAllUser();
+//        model.addAttribute("allUser", allUser);
+//        return "users_list";
+//    }
 
     @GetMapping("/admin/user_create")
     public String createUserAndShow(User user) {
@@ -74,5 +74,12 @@ public class UserController {
         //model.addAttribute("error", error);
         //model.addAttribute("logout", logout);
         return "login";
+    }
+
+    @GetMapping("/user")
+    public String getAllUser(Model model) {
+        List<User> allUser = userService.getAllUser();
+        model.addAttribute("allUser", allUser);
+        return "user_page";
     }
 }
