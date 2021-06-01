@@ -1,0 +1,373 @@
+.navigation-clean {
+  background: #fff;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  color: #333;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  margin-bottom: 0;
+}
+
+@media (min-width:768px) {
+  .navigation-clean {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.navigation-clean .navbar-toggler {
+  border-color: #ddd;
+}
+
+.navigation-clean .navbar-toggler:hover, .navigation-clean .navbar-toggler:focus {
+  background: none;
+}
+
+.navigation-clean .navbar-toggler {
+  color: #888;
+}
+
+.navigation-clean .navbar-collapse, .navigation-clean .form-inline {
+  border-top-color: #ddd;
+}
+
+.navigation-clean.navbar .navbar-nav .nav-link {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.navigation-clean.navbar-light .navbar-nav .nav-link {
+  color: #465765;
+}
+
+.navigation-clean.navbar-light .navbar-nav .nav-link:focus, .navigation-clean.navbar-light .navbar-nav .nav-link:hover {
+  color: #e5eff8 !important;
+  background-color: transparent;
+}
+
+.navbar.navbar-light.navbar-expand-md.navigation-clean {
+  background: var(--gray-dark);
+  height: 50px;
+}
+
+.container-fluid {
+  height: 40rem;
+  max-height: 100%;
+}
+
+label {
+  height: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+  width: 80px;
+  color: var(--light);
+  text-align: center;
+}
+
+#email {
+  height: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+  width: 118px;
+  font-style: normal;
+  text-align: center;
+}
+
+.navbar.navbar-light.navbar-expand-md.navigation-clean {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.container.my-nav-container1 {
+  width: 380px;
+  margin-left: 0px;
+  padding-left: 5px;
+  max-width: 318px;
+  padding-right: 5px;
+  margin-right: 0px;
+}
+
+.container.my-nav-container1 {
+  width: 380px;
+  margin-left: 0px;
+  padding-left: 5px;
+  max-width: 318px;
+  padding-right: 5px;
+  margin-right: 0px;
+}
+
+.navbar-nav {
+  width: 90px;
+  margin: 0px;
+  margin-left: 0px;
+  max-width: 90px;
+}
+
+#navcol-1 {
+  width: 100px;
+  max-width: 95px;
+}
+
+.nav-link.my-nav-link-logout {
+  width: 90px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+}
+
+.table-responsive {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+tbody {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.col-md-10 {
+  background: var(--light);
+}
+
+.col-md-10 {
+  max-height: 100vh;
+  height: 100vh;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
+tr {
+  border-left: 0;
+  border-right: 0;
+}
+
+.btn.btn-danger {
+  width: 65px;
+  padding-right: 8px;
+  padding-left: 8px;
+  height: 37px;
+  font-size: 14px;
+}
+
+.btn.btn-info {
+  width: 45px;
+  padding-right: 8px;
+  padding-left: 8px;
+  height: 37px;
+  font-size: 14px;
+}
+
+label {
+  color: var(--gray-dark);
+  height: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#email {
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+}
+
+label {
+  height: 40px;
+  color: rgb(0,0,0);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.container.my-nav-container1 {
+  height: 40px;
+}
+
+#text {
+  color: var(--white);
+}
+
+.table-responsive {
+  background: var(--white);
+}
+
+.form-control {
+  height: 38px;
+  max-height: 60px;
+}
+
+#age {
+  height: 40px;
+}
+
+#lastName {
+  height: 40px;
+}
+
+#firstName {
+  height: 40px;
+}
+
+b, strong {
+  font-weight: bolder;
+}
+
+.row.no-gutters {
+  max-width: 100%;
+  width: 100%;
+}
+
+.col-2 {
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 15px;
+}
+
+#v-pills-tab {
+  width: 100%;
+}
+
+#v-pills-admin {
+  width: 100%;
+}
+
+.col-12 {
+  margin-top: 15px;
+}
+
+#inner-table {
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+#admin-allUsers-table {
+  margin-top: 5px;
+}
+
+#email-nav {
+  width: 118px;
+}
+
+.table-responsive {
+  background: var(--white);
+}
+
+#adminPanelColumn {
+  background: var(--light);
+  height: 100vh;
+  padding-right: 20px;
+  padding-left: 20px;
+  max-width: 100%;
+  width: 100%;
+}
+
+#panel-add-new-user {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+#labelFirstName {
+  height: 20px;
+}
+
+#labelLastName {
+  height: 20px;
+}
+
+#labelAge {
+  height: 20px;
+}
+
+#labelEmail {
+  height: 20px;
+}
+
+#password {
+  height: 20px;
+}
+
+#passwordAddNewUser {
+  height: 40px;
+  max-height: 40px;
+}
+
+#role {
+  height: 20px;
+}
+
+#v-pills-user {
+  width: 100%;
+}
+
+#myUserTableColumn {
+  width: 100%;
+  max-width: 100%;
+  padding: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  height: 100vh;
+  max-height: 100vh;
+  padding-top: 0px;
+}
+
+#myUserTableCell {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+#role-nav {
+  width: 108px;
+}
+
+#role-nav {
+  color: var(--white);
+}
+
+#role-1 {
+  height: 20px;
+}
+
+#password-1 {
+  height: 20px;
+}
+
+#labelEmail-1 {
+  height: 20px;
+}
+
+#labelAge-1 {
+  height: 20px;
+}
+
+#labelLastName-1 {
+  height: 20px;
+}
+
+#labelFirstName-1 {
+  height: 20px;
+}
+
+#labelID {
+  height: 20px;
+}
+
+#id {
+  height: 38px;
+}
+
+.container-fluid {
+  height: 580px;
+}
+
+#roleSelectEdit {
+  height: 50px;
+}
+

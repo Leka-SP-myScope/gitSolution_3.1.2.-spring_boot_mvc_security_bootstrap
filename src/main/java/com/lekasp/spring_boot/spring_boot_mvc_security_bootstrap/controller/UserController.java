@@ -35,16 +35,16 @@ public class UserController {
 //        return "users_list";
 //    }
 
-    @GetMapping("/admin/user_create")
-    public String createUserAndShow(User user) {
-        return "user_create";
-    }
-
-    @PostMapping("/admin/user_create")
-    public String createUser(User user) {
-        userService.saveUser(user);
-        return "redirect:/user";
-    }
+//    @GetMapping("/user_create")
+//    public String createUserAndShow(User user) {
+//        return "user_create";
+//    }
+//
+//    @PostMapping("/user_create")
+//    public String createUser(User user) {
+//        userService.saveUser(user);
+//        return "redirect:/user";
+//    }
 
     @GetMapping("/admin/user_delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
@@ -71,8 +71,6 @@ public class UserController {
                            Model model) {
         model.addAttribute("error", error != null);
         model.addAttribute("logout", logout != null);
-        //model.addAttribute("error", error);
-        //model.addAttribute("logout", logout);
         return "login";
     }
 
@@ -81,5 +79,23 @@ public class UserController {
         List<User> allUser = userService.getAllUser();
         model.addAttribute("allUser", allUser);
         return "user_page";
+    }
+
+    @GetMapping("/admin/user")
+    public String getAllUser2(Model model) {
+        List<User> allUser = userService.getAllUser();
+        model.addAttribute("allUser", allUser);
+        return "admin_page";
+    }
+
+    @GetMapping("/admin/admin_page")
+    public String createUserAndShow2(User user) {
+        return "admin_page";
+    }
+
+    @PostMapping("/admin/admin_page")
+    public String createUser2(User user) {
+        userService.saveUser(user);
+        return "redirect:/admin/user";
     }
 }

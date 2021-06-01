@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+>
 
 <head>
     <meta charset="utf-8">
@@ -9,13 +10,16 @@
     <link rel="stylesheet" href="/Navigation-Clean.css" type="text/css">
 </head>
 
-<body th:each="message : ${allUser}">
+<!-- <body th:each="message : ${allUser}"> -->
+<body>
 <nav class="navbar navbar-light navbar-expand-md navigation-clean">
     <div class="container-fluid">
-        <div class="container my-nav-container1"><b><label class="text-lowercase text-center text-light" id="email"
-                                                        for="email" th:text="${message.email}"><strong></strong></label></b><label
-                class="text-center">with roles:</label><label class="text-uppercase text-left" id="role"
-                                                              for="role">user</label></div>
+        <div class="container my-nav-container1">
+                <b><label class="text-lowercase text-center text-light" id="email" for="email" th:text="${#authentication.getPrincipal().getEmail()}"></label></b>
+                <label class="text-center">with roles:</label>
+                <label class="text-uppercase text-left" id="role" for="role" th:text="${#authentication.getPrincipal().getUsername()}"></label>
+        </div>
+
         <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
@@ -67,7 +71,11 @@
                                                 <td th:text="${message.surname}">Cell 3</td>
                                                 <td th:text="${message.age}">Cell 4</td>
                                                 <td th:text="${message.email}">Cell 5</td>
-                                                <td class="border-right-0" th:text="${(message.roles).getRole()}">Cell 6</td>
+                                                <td class="border-right-0"
+                                                    th:each="userRole : ${message.roles}"
+                                                    th:if="${userRole.role.startsWith('ROLE_')}"
+                                                    th:text="${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
