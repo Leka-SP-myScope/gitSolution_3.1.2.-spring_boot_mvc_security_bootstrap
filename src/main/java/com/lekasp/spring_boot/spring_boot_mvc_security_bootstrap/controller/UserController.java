@@ -1,17 +1,17 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.controller;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -82,18 +82,22 @@ public class UserController {
     }
 
     @GetMapping("/admin/user")
-    public String getAllUser2(Model model) {
+    public String getAllUser2(@ModelAttribute("user") User user, Model model) {
         List<User> allUser = userService.getAllUser();
+        Set<Role> allRoles = new HashSet<>();
+        //allRoles.add("ROLE_ADMIN");
+
+        model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         return "admin_page";
     }
 
-    @GetMapping("/admin/admin_page")
-    public String createUserAndShow2(User user) {
-        return "admin_page";
-    }
+//    @GetMapping("/admin/user_create")
+//    public String createUserAndShow2(User user) {
+//        return "admin_page";
+//    }
 
-    @PostMapping("/admin/admin_page")
+    @PostMapping("/admin/user")
     public String createUser2(User user) {
         userService.saveUser(user);
         return "redirect:/admin/user";

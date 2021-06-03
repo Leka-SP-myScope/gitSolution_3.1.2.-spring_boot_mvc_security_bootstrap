@@ -76,8 +76,8 @@
                                                             th:if="${userRole.role.startsWith('ROLE_')}"
                                                             th:text="${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
                                                         </td>
-                                                        <td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#editModal">Edit</button></td>
-                                                        <td class="border-right-0"><button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
+                                                        <td><button id="btnEditModal" class="btn btn-info" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Edit</button></td>
+                                                        <td class="border-right-0"><button id="btnDeleteModal" class="btn btn-danger" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Delete</button></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -102,15 +102,15 @@
                                             <div class="col-4 offset-4">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <form class="text-center" method="post" action="#" th:action="@{/admin/admin_page}" th:object="${user}">
-                                                            <div class="form-group"><label id="labelFirstName" for="firstName"><strong>First name</strong></label><input class="form-control" type="text" id="firstName" name="firstName" placeholder="First name" required=""></div>
-                                                            <div class="form-group"><label id="labelLastName" for="lastName"><strong>Last name</strong></label><input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last name" required=""></div>
-                                                            <div class="form-group"><label id="labelAge" for="age"><strong>Age</strong></label><input class="form-control" type="text" id="age" name="age" placeholder="Age" required=""></div>
-                                                            <div class="form-group"><label id="labelEmail" for="email"><strong>Email</strong></label><input class="form-control" type="email" id="email" placeholder="Email" name="email" required=""></div>
-                                                            <div class="form-group"><label id="password" for="password"><strong>Password</strong></label><input class="form-control" type="password" id="passwordAddNewUser" name="password" placeholder="Password" required=""></div>
-                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="">
-                                                                <option value="12">ADMIN</option>
-                                                                <option value="13">USER</option>
+                                                        <form class="text-center" method="post" th:action="@{/admin/user}" th:object="${user}">
+                                                            <div class="form-group"><label id="labelFirstName" for="name"><strong>First name</strong></label><input class="form-control" type="text" th:field="*{name}" id="name" name="firstName" placeholder="First name" required=""></div>
+                                                            <div class="form-group"><label id="labelLastName" for="surname"><strong>Last name</strong></label><input class="form-control" type="text" th:field="*{surname}" id="surname" name="lastName" placeholder="Last name" required=""></div>
+                                                            <div class="form-group"><label id="labelAge" for="age"><strong>Age</strong></label><input class="form-control" type="text" th:field="*{age}" id="age" name="age" placeholder="Age" required=""></div>
+                                                            <div class="form-group"><label id="labelEmail" for="email"><strong>Email</strong></label><input class="form-control" type="email" th:field="*{email}" id="email" placeholder="Email" name="email" required=""></div>
+                                                            <div class="form-group"><label id="password" for="password"><strong>Password</strong></label><input class="form-control" type="password" th:field="*{password}" id="password1" name="password" placeholder="Password" required=""></div>
+                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="" th:field="*{roles}">
+                                                                <option value="13" th:each="userRole : ${allRoles}" th:value="${userRole.role.setRole()}">ADMIN</option>
+                                                                <option value="12">USER</option>
                                                             </select></div><button class="btn btn-success" type="submit">Add new user</button>
                                                         </form>
                                                     </div>
@@ -176,40 +176,14 @@
         </div>
     </div>
 </div>
-<div class="modal fade" role="dialog" tabindex="-1" id="editModal">
+
+<div class="modal fade" role="dialog" tabindex="-1" id="editAndDeleteModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Edit user</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-6 offset-3">
-                            <form class="text-center" method="post" action="#">
-                                <div class="form-group"><label id="labelIDEdit" for="id"><strong>ID</strong><br></label><input class="form-control" type="number" id="idEdit" name="id" required=""></div>
-                                <div class="form-group"><label id="labelFirstNameEdit" for="firstName"><strong>First name</strong></label><input class="form-control" type="text" id="firstNameEdit" name="firstName" required=""></div>
-                                <div class="form-group"><label id="labelLastNameEdit" for="lastName"><strong>Last name</strong></label><input class="form-control" type="text" id="lastNameEdit" name="lastName" required=""></div>
-                                <div class="form-group"><label id="labelAgeEdit" for="age"><strong>Age</strong></label><input class="form-control" type="number" id="ageEdit" name="age" required=""></div>
-                                <div class="form-group"><label id="labelEmailEdit" for="email"><strong>Email</strong></label><input class="form-control" type="email" id="emailEdit" name="email" required=""></div>
-                                <div class="form-group"><label id="passwordEdit" for="password"><strong>Password</strong></label><input class="form-control" type="password" id="passwordAddNewUserEdit" name="password" required=""></div>
-                                <div class="form-group"><label id="roleEdit" for="role"><strong>Role</strong></label><select class="form-control" id="roleSelectEdit" multiple="">
-                                    <option value="">ADMIN</option>
-                                    <option value="">USER</option>
-                                </select></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="submit">Edit</button></div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" role="dialog" tabindex="-1" id="deleteModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+            <div th:if="${btnDeleteModal}">
                 <h4 class="modal-title">Delete user</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
@@ -232,7 +206,18 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button><button class="btn btn-danger" type="submit">Delete</button></div>
+            <div th:if="${editModal}">
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="submit">Edit</button>
+                </div>
+            </div>
+            <div th:if="${deleteModal}">
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
