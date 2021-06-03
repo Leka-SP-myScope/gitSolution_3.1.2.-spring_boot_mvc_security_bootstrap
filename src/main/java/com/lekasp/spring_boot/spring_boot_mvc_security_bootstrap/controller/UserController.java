@@ -85,8 +85,8 @@ public class UserController {
     public String getAllUser2(@ModelAttribute("user") User user, Model model) {
         List<User> allUser = userService.getAllUser();
         Set<Role> allRoles = new HashSet<>();
-        //allRoles.add("ROLE_ADMIN");
-
+        allRoles.add(new Role("ROLE_ADMIN"));
+        allRoles.add(new Role("ROLE_USER"));
         model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         return "admin_page";
