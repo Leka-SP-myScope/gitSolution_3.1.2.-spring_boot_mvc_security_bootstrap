@@ -109,8 +109,8 @@
                                                             <div class="form-group"><label id="labelEmail" for="email"><strong>Email</strong></label><input class="form-control" type="email" th:field="*{email}" id="email" placeholder="Email" name="email" required=""></div>
                                                             <div class="form-group"><label id="password" for="password"><strong>Password</strong></label><input class="form-control" type="password" th:field="*{password}" id="password1" name="password" placeholder="Password" required=""></div>
                                                             <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="" th:field="*{roles}">
-                                                                <option value="" th:each="userRole : ${allRoles}" th:value="${userRole}">ADMIN</option>
-                                                                <option value="" th:each="userRole : ${allRoles}" th:value="${userRole}">USER</option>
+                                                                <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.role}"></option>
+
                                                             </select></div><button class="btn btn-success" type="submit">Add new user</button>
                                                         </form>
                                                     </div>

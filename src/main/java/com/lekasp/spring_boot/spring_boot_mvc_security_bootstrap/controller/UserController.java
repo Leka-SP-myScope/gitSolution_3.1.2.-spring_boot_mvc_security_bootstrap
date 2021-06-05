@@ -85,8 +85,8 @@ public class UserController {
     public String getAllUser2(@ModelAttribute("user") User user, Model model) {
         List<User> allUser = userService.getAllUser();
         Set<Role> allRoles = new HashSet<>();
-        allRoles.add(new Role("ROLE_ADMIN"));
-        allRoles.add(new Role("ROLE_USER"));
+        allRoles.add(new Role("USER"));
+        allRoles.add(new Role("ADMIN"));
         model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         return "admin_page";
@@ -98,8 +98,9 @@ public class UserController {
 //    }
 
     @PostMapping("/admin/user")
-    public String createUser2(User user) {
+    public String createUser2(@ModelAttribute("allRoles") Role role, User user) {
         userService.saveUser(user);
+        userService.saveRole(role);
         return "redirect:/admin/user";
     }
 }

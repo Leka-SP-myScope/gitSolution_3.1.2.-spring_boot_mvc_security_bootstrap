@@ -1,6 +1,8 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.RoleRepository;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -38,6 +42,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public void saveRole(Role role) {
+        roleRepository.save(role);
     }
 
     @Override

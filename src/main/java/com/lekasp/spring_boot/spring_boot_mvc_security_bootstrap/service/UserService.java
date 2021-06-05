@@ -1,5 +1,6 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public interface UserService {
     User findById(Long id);
 
     void saveUser(User user);
+
+    void saveRole(Role role);
 
     void deleteById(Long id);
 }
