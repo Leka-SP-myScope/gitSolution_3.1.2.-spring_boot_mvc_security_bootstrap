@@ -87,6 +87,7 @@ public class UserController {
         Set<Role> allRoles = new HashSet<>();
         allRoles.add(new Role("USER"));
         allRoles.add(new Role("ADMIN"));
+        user.setRoles(allRoles);
         model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         return "admin_page";
