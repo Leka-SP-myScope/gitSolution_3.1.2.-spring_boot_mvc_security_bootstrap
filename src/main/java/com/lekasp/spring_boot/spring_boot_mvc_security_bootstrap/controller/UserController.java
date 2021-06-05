@@ -98,9 +98,8 @@ public class UserController {
 //    }
 
     @PostMapping("/admin/user")
-    public String createUser2(@ModelAttribute("allRoles") Role role, User user) {
+    public String createUser2(User user) {
         userService.saveUser(user);
-        userService.saveRole(role);
         return "redirect:/admin/user";
     }
 }

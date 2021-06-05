@@ -15,7 +15,5 @@ public interface UserService {
 
     void saveUser(User user);
 
-    void saveRole(Role role);
-
     void deleteById(Long id);
 }
