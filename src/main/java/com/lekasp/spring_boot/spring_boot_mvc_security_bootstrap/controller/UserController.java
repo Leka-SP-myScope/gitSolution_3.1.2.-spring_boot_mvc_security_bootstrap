@@ -88,6 +88,7 @@ public class UserController {
         allRoles.add(new Role("USER"));
         allRoles.add(new Role("ADMIN"));
         user.setRoles(allRoles);
+        model.addAttribute("modelRoles", user.getRoles());
         model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         return "admin_page";
@@ -99,7 +100,7 @@ public class UserController {
 //    }
 
     @PostMapping("/admin/user")
-    public String createUser2(User user) {
+    public String createUser2(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin/user";
     }

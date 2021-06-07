@@ -111,14 +111,14 @@
                                                             <!--<div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" name="role" id="roleName">-->
                                                             <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" name="role" id="roleName">
 
-                                                                <!--<option th:each="role:${allRoles}" th:value="${role.id}" th:text="${role.role}"></option>-->
+                                                                <option th:each="role:${modelRoles}" th:value="${role.role}" th:text="${role.role}"></option>
 
 
                                                                 <!--<option th:each="role:${allRoles}" th:value="${role.id}" th:text="${role.role}"></option>-->
                                                                 <!--<option th:each="role:${user.roles}" th:value="${role.id}" th:text="${role.role}"></option>-->
 
-                                                                <option th:value="${user.roles[0].role}" th:text="${user.roles[0].role}"></option>
-                                                                <option th:value="${user.roles[1].role}" th:text="${user.roles[1].role}"></option>
+                                                                <!--<option th:value="${user.roles[0].role}" th:text="${user.roles[0].role}"></option>-->
+                                                                <!--<option th:value="${user.roles[1].role}" th:text="${user.roles[1].role}"></option>-->
                                                                 <!--<option th:value="${roles[1].id}" th:text="${roles[1].role}"></option>-->
                                                                 <!--<option th:value="${allRoles[1].id}" th:text="${allRoles[1].role}"></option>-->
                                                                 <!--<option th:value="${allRoles[1].id}" th:text="${allRoles[1].role}"></option>-->
