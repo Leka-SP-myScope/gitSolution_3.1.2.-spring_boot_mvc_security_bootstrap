@@ -112,7 +112,7 @@
                                                             <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" type="text" th:field="*{roles}">
                                                             <!--<div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" id="roles" name="roles" th:value="*{roles}">-->
 
-                                                                <option th:each="roles:${roles}" th:value="${roles.id}" th:text="${roles.role}"></option>
+                                                                <option th:each="roles:${allRoles}" th:value="${roles.id}" th:text="${roles.role}"></option>
 
                                                                 <!--<option th:value="${roles[0]}" th:text="${roles[0].role}"></option>-->
                                                                 <!-- Don't working <option th:each="role:${roles}" th:value="${role}" th:text="${role}"></option>-->

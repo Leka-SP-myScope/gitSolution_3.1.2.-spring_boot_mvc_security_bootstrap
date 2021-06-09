@@ -84,11 +84,12 @@ public class UserController {
     @GetMapping("/admin/users")
     public String getAllUser2(@ModelAttribute("user") User user, Model model) {
         List<User> allUser = userService.getAllUser();
-        //Set<Role> allRoles = new HashSet<>();
-
-        //user.setRoles(allRoles);
-        model.addAttribute("modelRoles", user.getRoles());
-        //model.addAttribute("allRoles", allRoles);
+        Set<Role> allRoles = new HashSet<>();
+        allRoles.add(new Role((long) 0,"ADMIN"));
+        allRoles.add(new Role((long) 1,"USER"));
+        user.setRoles(allRoles);
+        //model.addAttribute("modelRoles", user.getRoles());
+        model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         return "admin_page";
     }
@@ -98,17 +99,20 @@ public class UserController {
 //        return "admin_page";
 //    }
 
-    @ModelAttribute("roles")
-    public Set<Role> getRoles(){
-        Set<Role> allRoles = new HashSet<>();
-        allRoles.add(new Role((long) 0,"ADMIN"));
-        allRoles.add(new Role((long) 1,"USER"));
-        return allRoles;
-    }
+//    @ModelAttribute("roles")
+//    public Set<Role> getRoles(){
+//        Set<Role> allRoles = new HashSet<>();
+//        allRoles.add(new Role((long) 0,"ADMIN"));
+//        allRoles.add(new Role((long) 1,"USER"));
+//        return allRoles;
+//    }
 
     @PostMapping("/admin/users")
     public String createUser(@ModelAttribute("user") User user) {
-        //user.setRoles(user.getRoles());
+//        Set<Role> roles = user.getRoles();
+//        for (Role role: roles) {
+//            System.out.println(role.getRole());
+//        }
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
