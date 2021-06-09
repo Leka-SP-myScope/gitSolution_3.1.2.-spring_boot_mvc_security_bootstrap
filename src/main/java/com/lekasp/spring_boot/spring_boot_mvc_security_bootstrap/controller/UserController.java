@@ -81,15 +81,14 @@ public class UserController {
         return "user_page";
     }
 
-    @GetMapping("/admin/user")
+    @GetMapping("/admin/users")
     public String getAllUser2(@ModelAttribute("user") User user, Model model) {
         List<User> allUser = userService.getAllUser();
-        Set<Role> allRoles = new HashSet<>();
-        allRoles.add(new Role("USER"));
-        allRoles.add(new Role("ADMIN"));
-        user.setRoles(allRoles);
+        //Set<Role> allRoles = new HashSet<>();
+
+        //user.setRoles(allRoles);
         model.addAttribute("modelRoles", user.getRoles());
-        model.addAttribute("allRoles", allRoles);
+        //model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         return "admin_page";
     }
@@ -99,9 +98,18 @@ public class UserController {
 //        return "admin_page";
 //    }
 
-    @PostMapping("/admin/user")
-    public String createUser2(@ModelAttribute("user") User user) {
+    @ModelAttribute("roles")
+    public Set<Role> getRoles(){
+        Set<Role> allRoles = new HashSet<>();
+        allRoles.add(new Role((long) 0,"ADMIN"));
+        allRoles.add(new Role((long) 1,"USER"));
+        return allRoles;
+    }
+
+    @PostMapping("/admin/users")
+    public String createUser(@ModelAttribute("user") User user) {
+        //user.setRoles(user.getRoles());
         userService.saveUser(user);
-        return "redirect:/admin/user";
+        return "redirect:/admin/users";
     }
 }
