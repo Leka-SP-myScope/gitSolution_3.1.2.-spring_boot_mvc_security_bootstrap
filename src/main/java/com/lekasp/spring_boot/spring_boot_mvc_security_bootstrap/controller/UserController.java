@@ -91,6 +91,9 @@ public class UserController {
         //model.addAttribute("modelRoles", user.getRoles());
         model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
+        //model.addAttribute("user", new User());
+        model.addAttribute("user", user);
+        System.out.println(model.addAttribute("user", user));
         return "admin_page";
     }
 
@@ -113,7 +116,9 @@ public class UserController {
 //        for (Role role: roles) {
 //            System.out.println(role.getRole());
 //        }
+        System.out.println(user);
         userService.saveUser(user);
+        System.out.println(user);
         return "redirect:/admin/users";
     }
 }
