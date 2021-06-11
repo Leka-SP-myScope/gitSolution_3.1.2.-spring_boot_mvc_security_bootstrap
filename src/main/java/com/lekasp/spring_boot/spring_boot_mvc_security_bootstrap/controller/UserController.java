@@ -82,11 +82,12 @@ public class UserController {
     }
 
     @GetMapping("/admin/users")
-    public String getAllUser2(@ModelAttribute("user") User user, Model model) {
+    public String getAllUser2(Model model) {
         List<User> allUser = userService.getAllUser();
         Set<Role> allRoles = new HashSet<>();
         allRoles.add(new Role((long) 0,"ADMIN"));
         allRoles.add(new Role((long) 1,"USER"));
+        User user = new User();
         user.setRoles(allRoles);
         //model.addAttribute("modelRoles", user.getRoles());
         model.addAttribute("allRoles", allRoles);
