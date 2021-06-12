@@ -4,6 +4,7 @@ import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 
@@ -16,4 +17,6 @@ public interface UserService {
     void saveUser(User user);
 
     void deleteById(Long id);
+
+    List<Set<Role>> getRoles();
 }
