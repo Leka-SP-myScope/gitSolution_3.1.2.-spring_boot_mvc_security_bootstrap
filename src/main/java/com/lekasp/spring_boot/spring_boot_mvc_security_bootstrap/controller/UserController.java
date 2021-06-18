@@ -121,8 +121,9 @@ public class UserController {
 
         System.out.println("User without rolesSet: " + user);
         List<Set<Role>> getRoles = userService.getRoles();
-        Role roleAdmin = rolesSet.stream().filter(item ->item.getId()==0).findFirst().get();
-        Role roleUser = rolesSet.stream().filter(item ->item.getId()==1).findFirst().get();
+        //Role roleAdmin = rolesSet.stream().filter(item ->item.getId()==0).findFirst().get();
+        //Role roleUser = rolesSet.stream().filter(item ->item.getId()==1).findFirst().get();
+
         //getRoles.get(user.getRoles());
         //user.setRoles(allRoles.);
         //System.out.println("User with rolesSet: " + user);
