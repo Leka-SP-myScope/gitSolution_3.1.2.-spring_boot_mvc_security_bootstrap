@@ -1,5 +1,6 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.UserRepository;
@@ -16,10 +17,12 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserConverter userConverter;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter) {
         this.userRepository = userRepository;
+        this.userConverter = userConverter;
     }
 
     @Override
@@ -40,8 +43,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User user) {
-        userRepository.save(user);
+    public void saveUser(UserDto userDto) {
+        userRepository.save(userConverter.fromUserDtoToUser(userDto));
     }
 
     @Override

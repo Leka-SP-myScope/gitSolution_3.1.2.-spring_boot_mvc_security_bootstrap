@@ -1,5 +1,6 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.controller;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserService;
@@ -60,8 +61,8 @@ public class UserController {
     }
 
     @PostMapping("/admin/user_update")
-    public String saveUser(User user) {
-        userService.saveUser(user);
+    public String saveUser(UserDto userDto) {
+        userService.saveUser(userDto);
         return "redirect:/user";
     }
 
@@ -112,14 +113,14 @@ public class UserController {
 //    }
 
     @PostMapping("/admin/users")
-    public String createUser(@ModelAttribute("user") User user,
+    public String createUser(@ModelAttribute("user") UserDto userDto,
                              @RequestParam("rolesSet") Set<Role> rolesSet) {
 //        Set<Role> roles = user.getRoles();
 //        for (Role role: roles) {
 //            System.out.println(role.getRole());
 //        }
 
-        System.out.println("User without rolesSet: " + user);
+        System.out.println("User without rolesSet: " + userDto);
         List<Set<Role>> getRoles = userService.getRoles();
         //Role roleAdmin = rolesSet.stream().filter(item ->item.getId()==0).findFirst().get();
         //Role roleUser = rolesSet.stream().filter(item ->item.getId()==1).findFirst().get();
@@ -129,9 +130,9 @@ public class UserController {
         //System.out.println("User with rolesSet: " + user);
 
         //System.out.println(rolesSet);
-        System.out.println(user);
-        userService.saveUser(user);
-        System.out.println(user);
+        System.out.println(userDto);
+        userService.saveUser(userDto);
+        System.out.println(userDto);
         return "redirect:/admin/users";
     }
 }

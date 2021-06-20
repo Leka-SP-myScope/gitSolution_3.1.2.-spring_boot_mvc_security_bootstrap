@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleConverter {
 
+
     public Role fromRoleDtoToRole(RoleDto roleDto) {
         Role role = new Role();
         role.setId(roleDto.getId());
