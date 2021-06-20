@@ -3,6 +3,7 @@ package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.controller;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserConverter;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,10 +19,12 @@ import java.util.Set;
 public class UserController {
 
     private final UserService userService;
+    private UserConverter userConverter;
 
     @Autowired
-    public UserController(@Qualifier("userServiceImpl") UserService userService) {
+    public UserController(@Qualifier("userServiceImpl") UserService userService, UserConverter userConverter) {
         this.userService = userService;
+        this.userConverter = userConverter;
     }
 
     @GetMapping
@@ -55,7 +58,7 @@ public class UserController {
 
     @GetMapping("/admin/user_update/{id}")
     public String saveUserAndShow(@PathVariable("id") Long id, Model model) {
-        User user = userService.findById(id);
+        User user = userConverter.fromUserDtoToUser(userService.findById(id));
         model.addAttribute("user", user);
         return "user_update";
     }
@@ -121,7 +124,7 @@ public class UserController {
 //        }
 
         System.out.println("User without rolesSet: " + userDto);
-        List<Set<Role>> getRoles = userService.getRoles();
+        //List<Set<Role>> getRoles = userService.getRoles();
         //Role roleAdmin = rolesSet.stream().filter(item ->item.getId()==0).findFirst().get();
         //Role roleUser = rolesSet.stream().filter(item ->item.getId()==1).findFirst().get();
 

@@ -53,15 +53,15 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    public List<Set<Role>> getRoles() {
-        List<Set<Role>> allRoles = new ArrayList<>();
-        Set<Role> roleFirst = new HashSet<>();
-        roleFirst.add(new Role((long) 0, "ADMIN"));
-        Set<Role> roleSecond = new HashSet<>();
-        roleSecond.add(new Role((long) 1, "USER"));
-        allRoles.add(roleFirst);
-        allRoles.add(roleSecond);
-        System.out.println(allRoles);
-        return allRoles;
-    }
+//    public List<Set<Role>> getRoles() {
+//        List<Set<Role>> allRoles = new ArrayList<>();
+//        Set<Role> roleFirst = new HashSet<>();
+//        roleFirst.add(new Role((long) 0, "ADMIN"));
+//        Set<Role> roleSecond = new HashSet<>();
+//        roleSecond.add(new Role((long) 1, "USER"));
+//        allRoles.add(roleFirst);
+//        allRoles.add(roleSecond);
+//        System.out.println(allRoles);
+//        return allRoles;
+//    }
 }

@@ -1,5 +1,6 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.security;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserConverter;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,15 +14,17 @@ import java.util.Optional;
 public class MyUserDetailsService implements UserDetailsService {
 
     private UserService userService;
+    private UserConverter userConverter;
 
     @Autowired
-    public MyUserDetailsService(UserService userService) {
+    public MyUserDetailsService(UserService userService, UserConverter userConverter) {
         this.userService = userService;
+        this.userConverter = userConverter;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return Optional.of(userService.getUserByName(username))
+        return Optional.of(userConverter.fromUserDtoToUser(userService.getUserByName(username)))
                 .orElseThrow(() -> new UsernameNotFoundException("The entered username : "
                         + username + " is incorrect. Please, change your username"));
     }
