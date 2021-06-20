@@ -28,20 +28,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> getAllUser() {
-        List<User> users = userRepository.findAll();
-        return users.stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
     }
 
     @Override
-    public User getUserByName(String name) {
-        return userRepository.getUserByName(name)
-                .orElseThrow(() -> new NoResultException("No User by: " + name + " present"));
+    public UserDto getUserByName(String name) {
+        return userConverter.fromUserToUserDto(userRepository.getUserByName(name)
+                .orElseThrow(() -> new NoResultException("No User by: " + name + " present")));
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new NoResultException("No User with: " + id + " present"));
+    public UserDto findById(Long id) {
+        return userConverter.fromUserToUserDto(userRepository.findById(id)
+                .orElseThrow(() -> new NoResultException("No User with: " + id + " present")));
     }
 
     @Override
