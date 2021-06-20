@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface UserService {
 
-    List<User> getAllUser();
+    List<UserDto> getAllUser();
 
     User getUserByName(String name);
 

@@ -77,14 +77,14 @@ public class UserController {
 
     @GetMapping("/user")
     public String getAllUser(Model model) {
-        List<User> allUser = userService.getAllUser();
+        List<UserDto> allUser = userService.getAllUser();
         model.addAttribute("allUser", allUser);
         return "user_page";
     }
 
     @GetMapping("/admin/users")
     public String getAllUser2(Model model) {
-        List<User> allUser = userService.getAllUser();
+        List<UserDto> allUser = userService.getAllUser();
         Set<Role> allRoles = new HashSet<>();
         allRoles.add(new Role((long) 0,"ADMIN"));
         allRoles.add(new Role((long) 1,"USER"));
