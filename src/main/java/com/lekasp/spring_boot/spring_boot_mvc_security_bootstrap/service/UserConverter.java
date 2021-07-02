@@ -18,30 +18,30 @@ public class UserConverter {
     }
 
     public User fromUserDtoToUser(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
+        //User user = modelMapper.map(userDto, User.class);
 
-//        User user = new User();
-//        user.setId(userDto.getId());
-//        user.setName(userDto.getName());
-//        user.setSurname(userDto.getSurname());
-//        user.setPassword(userDto.getPassword());
-//        user.setAge(userDto.getAge());
-//        user.setEmail(userDto.getEmail());
-//        user.setRoles(userDto.getRoles());
+        User user = new User();
+        user.setId(userDto.getId());
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+        user.setPassword(userDto.getPassword());
+        user.setAge(userDto.getAge());
+        user.setEmail(userDto.getEmail());
+        user.setRoles(userDto.getRoles());
         return user;
     }
 
     public UserDto fromUserToUserDto(User user) {
-        UserDto userDto = modelMapper.map(user, UserDto.class);
+        //UserDto userDto = modelMapper.map(user, UserDto.class);
 
-//        UserDto userDto = new UserDto();
-//        userDto.setId(user.getId());
-//        userDto.setName(user.getName());
-//        userDto.setSurname(user.getSurname());
-//        userDto.setPassword(user.getPassword());
-//        userDto.setAge(user.getAge());
-//        userDto.setEmail(user.getEmail());
-//        userDto.setRoles(user.getRoles());
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setName(user.getName());
+        userDto.setSurname(user.getSurname());
+        userDto.setPassword(user.getPassword());
+        userDto.setAge(user.getAge());
+        userDto.setEmail(user.getEmail());
+        userDto.setRoles(user.getRoles());
         return userDto;
     }
 }

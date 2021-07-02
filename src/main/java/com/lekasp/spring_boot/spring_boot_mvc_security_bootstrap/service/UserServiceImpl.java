@@ -1,5 +1,6 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.RoleDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
@@ -64,4 +65,24 @@ public class UserServiceImpl implements UserService {
 //        System.out.println(allRoles);
 //        return allRoles;
 //    }
+
+    public List<RoleDto> getRoles() {
+        List<RoleDto> allRoles = new ArrayList<>();
+        RoleDto roleFirst = new RoleDto((long) 0, "ADMIN");
+        RoleDto roleSecond = new RoleDto((long) 1, "USER");
+        allRoles.add(roleFirst);
+        allRoles.add(roleSecond);
+        System.out.println(allRoles);
+        return allRoles;
+    }
+
+    public Set<RoleDto> getSetRoles() {
+        Set<RoleDto> allSetRoles = new HashSet<>();
+        RoleDto roleFirst = new RoleDto((long) 0, "ADMIN");
+        RoleDto roleSecond = new RoleDto((long) 1, "USER");
+        allSetRoles.add(roleFirst);
+        allSetRoles.add(roleSecond);
+        System.out.println(allSetRoles);
+        return allSetRoles;
+    }
 }

@@ -1,5 +1,6 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.controller;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.RoleDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
@@ -93,12 +94,12 @@ public class UserController {
         allRoles.add(new Role((long) 1,"USER"));
         User user = new User();
         user.setRoles(allRoles);
-        //model.addAttribute("modelRoles", user.getRoles());
+        model.addAttribute("modelRoles", user.getRoles());
         model.addAttribute("allRoles", allRoles);
         model.addAttribute("allUser", allUser);
         //model.addAttribute("user", new User());
         model.addAttribute("user", user);
-        System.out.println(model.addAttribute("user", user));
+        //System.out.println(model.addAttribute("user", user));
         return "admin_page";
     }
 
@@ -124,8 +125,22 @@ public class UserController {
 //        }
 
         System.out.println("User without rolesSet: " + userDto);
+        List<RoleDto> getRoles = userService.getRoles();
+        //Set<Role> roles = getRoles.get(0);
+
         //List<Set<Role>> getRoles = userService.getRoles();
         //Role roleAdmin = rolesSet.stream().filter(item ->item.getId()==0).findFirst().get();
+        //Role roleAdmin1 = rolesSet.stream().filter(item ->item.getId()==0).findFirst().isPresent();
+
+//        if (rolesSet.stream().anyMatch(item -> item.getId() == 0)) {
+//            Set<Role> roleAdmin = new HashSet<>();
+//            roleAdmin.add(new Role((long) 0, "ADMIN"));
+//            userDto.setRoles(roleAdmin);
+//        } else if (rolesSet.stream().anyMatch(item -> item.getId() == 1)) {
+//            Set<Role> roleUser = new HashSet<>();
+//            roleUser.add(new Role((long) 1, "USER"));
+//            userDto.setRoles(roleUser);
+//        }
         //Role roleUser = rolesSet.stream().filter(item ->item.getId()==1).findFirst().get();
 
         //getRoles.get(user.getRoles());
@@ -134,6 +149,9 @@ public class UserController {
 
         //System.out.println(rolesSet);
         System.out.println(userDto);
+        //rolesSet.contains(userDto)
+
+
         userService.saveUser(userDto);
         System.out.println(userDto);
         return "redirect:/admin/users";
