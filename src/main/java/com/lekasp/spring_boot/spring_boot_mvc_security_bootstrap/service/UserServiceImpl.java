@@ -76,10 +76,20 @@ public class UserServiceImpl implements UserService {
         return allRoles;
     }
 
-    public Set<RoleDto> getSetRoles() {
-        Set<RoleDto> allSetRoles = new HashSet<>();
-        RoleDto roleFirst = new RoleDto((long) 0, "ADMIN");
-        RoleDto roleSecond = new RoleDto((long) 1, "USER");
+//    public Set<RoleDto> getSetRoles() {
+//        Set<RoleDto> allSetRoles = new HashSet<>();
+//        RoleDto roleFirst = new RoleDto((long) 0, "ADMIN");
+//        RoleDto roleSecond = new RoleDto((long) 1, "USER");
+//        allSetRoles.add(roleFirst);
+//        allSetRoles.add(roleSecond);
+//        System.out.println(allSetRoles);
+//        return allSetRoles;
+//    }
+
+    public Set<Role> getSetRoles() {
+        Set<Role> allSetRoles = new HashSet<>();
+        Role roleFirst = new Role((long) 0, "ADMIN");
+        Role roleSecond = new Role((long) 1, "USER");
         allSetRoles.add(roleFirst);
         allSetRoles.add(roleSecond);
         System.out.println(allSetRoles);
