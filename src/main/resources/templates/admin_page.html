@@ -111,7 +111,7 @@
                                                             <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" name="rolesSet" id="rolesSet">
 <!--/*                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" th:field="*{roles}">*/-->
 <!--/*                                                            <option th:each="role:${user.roles}" th:value="${role.id}" th:text="${role.role}"></option>*/-->
-                                                            <option th:each="role:${listRoles}" th:value="${role.id}" th:text="${role.role}"></option>
+                                                            <option th:each="role:${allRoles}" th:value="${role.id}" th:text="${role.role}"></option>
 <!--/*                                                            <option th:each="role:${user.roles}" th:value="${role.role}" th:text="${role.role}"></option>*/-->
 <!--/*                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" id="roles" name="roles">*/-->
 

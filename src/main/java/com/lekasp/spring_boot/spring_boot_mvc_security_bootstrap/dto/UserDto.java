@@ -2,6 +2,7 @@ package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto;
 
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 
+import java.util.List;
 import java.util.Set;
 
 public class UserDto {
@@ -11,20 +12,39 @@ public class UserDto {
     private String password;
     private int age;
     private String email;
-    private Set<Role> roles;
+    //private Set<Role> roles;
+    private List<RoleDto> roleDtos;
+
+    public List<RoleDto> getRoleDtos() {
+        return roleDtos;
+    }
+
+    public void setRoleDtos(List<RoleDto> roleDtos) {
+        this.roleDtos = roleDtos;
+    }
 
     public UserDto() {
     }
 
-    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles) {
+    public UserDto(Long id, String name, String surname, String password, int age, String email, List<RoleDto> roleDtos) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.age = age;
         this.email = email;
-        this.roles = roles;
+        this.roleDtos = roleDtos;
     }
+
+//    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles) {
+//        this.id = id;
+//        this.name = name;
+//        this.surname = surname;
+//        this.password = password;
+//        this.age = age;
+//        this.email = email;
+//        this.roles = roles;
+//    }
 
     public Long getId() {
         return id;
@@ -74,13 +94,13 @@ public class UserDto {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    public Set<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 
     @Override
     public String toString() {
@@ -91,7 +111,7 @@ public class UserDto {
                 ", password='" + password + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
-                ", roles=" + roles +
+                ", roleDtos=" + roleDtos +
                 '}';
     }
 }

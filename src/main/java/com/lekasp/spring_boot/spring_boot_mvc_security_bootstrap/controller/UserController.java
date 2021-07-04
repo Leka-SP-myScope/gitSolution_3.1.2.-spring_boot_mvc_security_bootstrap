@@ -129,6 +129,16 @@ public class UserController {
 //        for (Role role: roles) {
 //            System.out.println(role.getRole());
 //        }
+        Set<Role> allRoles = userService.getSetRoles();
+
+
+//        if (rolesSet.contains(0)) {
+//            userDto.setRoles(allRoles);
+
+//            for (Role role: allRoles) {
+//                userDto.setRoles(allRoles);
+//            }
+//        }
 
         System.out.println("User without rolesSet: " + userDto);
         List<RoleDto> getRoles = userService.getRoles();
