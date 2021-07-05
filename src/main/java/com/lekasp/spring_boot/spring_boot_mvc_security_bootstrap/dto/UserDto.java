@@ -14,14 +14,14 @@ public class UserDto {
     private int age;
     private String email;
     private Set<Role> roles;
-    private List<RoleDto> roleDtos;
+    //private List<RoleDto> roleDtos;
     private String rolesName;
 
     public UserDto() {
-        this.roleDtos = new ArrayList<>();
+        //this.roleDtos = new ArrayList<>();
     }
 
-    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, List<RoleDto> roleDtos, String rolesName) {
+    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, String rolesName) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -29,9 +29,20 @@ public class UserDto {
         this.age = age;
         this.email = email;
         this.roles = roles;
-        this.roleDtos = roleDtos;
         this.rolesName = rolesName;
     }
+
+//    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, List<RoleDto> roleDtos, String rolesName) {
+//        this.id = id;
+//        this.name = name;
+//        this.surname = surname;
+//        this.password = password;
+//        this.age = age;
+//        this.email = email;
+//        this.roles = roles;
+//        this.roleDtos = roleDtos;
+//        this.rolesName = rolesName;
+//    }
 
 //    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles) {
 //        this.id = id;
@@ -91,17 +102,17 @@ public class UserDto {
         this.email = email;
     }
 
-    public List<RoleDto> getRoleDtos() {
-        return roleDtos;
-    }
+//    public List<RoleDto> getRoleDtos() {
+//        return roleDtos;
+//    }
+//
+//    public void setRoleDtos(List<RoleDto> roleDtos) {
+//        this.roleDtos = roleDtos;
+//    }
 
-    public void setRoleDtos(List<RoleDto> roleDtos) {
-        this.roleDtos = roleDtos;
-    }
-
-    public void addRoleDto(RoleDto roleDto) {
-        this.roleDtos.add(roleDto);
-    }
+//    public void addRoleDto(RoleDto roleDto) {
+//        this.roleDtos.add(roleDto);
+//    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -129,7 +140,6 @@ public class UserDto {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", roles=" + roles +
-                ", roleDtos=" + roleDtos +
                 ", rolesName='" + rolesName + '\'' +
                 '}';
     }

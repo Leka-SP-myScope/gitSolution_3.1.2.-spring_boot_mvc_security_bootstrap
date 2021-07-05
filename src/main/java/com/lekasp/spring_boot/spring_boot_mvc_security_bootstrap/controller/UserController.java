@@ -95,17 +95,10 @@ public class UserController {
     @GetMapping("/admin/users")
     public String getAllUser2(Model model) {
         List<UserDto> allUser = userService.getAllUser();
-//        Set<Role> allRoles = new HashSet<>();
-//        allRoles.add(new Role((long) 0,"ADMIN"));
-//        allRoles.add(new Role((long) 1,"USER"));
-        //Set<Role> allRoles = userService.getSetRoles();
         List<String> listRoles = Arrays.asList("ADMIN", "USER");
-
         UserDto user = new UserDto();
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("allUser", allUser);
-        //model.addAttribute("user", new User());
-        //model.addAttribute("user", new User());
         model.addAttribute("user", user);
         //System.out.println(model.addAttribute("user", user));
         return "admin_page";
@@ -185,9 +178,11 @@ public class UserController {
         System.out.println(rolesName);
 
         if(rolesName.equals("ADMIN")) {
-            userDto.addRoleDto(new RoleDto("ADMIN"));
+            //userDto.addRoleDto(new RoleDto("ADMIN"));
+            userDto.setRoles(userService.getAdminRole());
         } else if (rolesName.equals("USER")) {
-            userDto.addRoleDto(new RoleDto("USER"));
+            //userDto.addRoleDto(new RoleDto("USER"));
+            userDto.setRoles(userService.getUserRole());
         }
         //Set<Role> allRoles = userService.getSetRoles();
 

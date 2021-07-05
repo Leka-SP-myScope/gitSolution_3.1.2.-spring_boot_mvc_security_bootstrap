@@ -28,4 +28,9 @@ public interface UserService {
     Set<RoleDto> getSetRoles();
 
     //Set<Role> getSetRoles();
+
+    public Set<Role> getAdminRole();
+
+    public Set<Role> getUserRole();
+
 }
