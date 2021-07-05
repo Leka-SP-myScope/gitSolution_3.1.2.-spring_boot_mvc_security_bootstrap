@@ -29,8 +29,4 @@ public interface UserService {
 
     //Set<Role> getSetRoles();
 
-    public Set<Role> getAdminRole();
-
-    public Set<Role> getUserRole();
-
 }

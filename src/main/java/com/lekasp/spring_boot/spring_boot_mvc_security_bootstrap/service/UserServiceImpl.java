@@ -86,20 +86,6 @@ public class UserServiceImpl implements UserService {
         return allSetRoles;
     }
 
-    public Set<Role> getAdminRole() {
-        Set<Role> adminRole = new HashSet<>();
-        Role roleAdmin = new Role("ADMIN");
-        adminRole.add(roleAdmin);
-        return adminRole;
-    }
-
-    public Set<Role> getUserRole() {
-        Set<Role> userRole = new HashSet<>();
-        Role roleUser = new Role("USER");
-        userRole.add(roleUser);
-        return userRole;
-    }
-
 //    public Set<Role> getSetRoles() {
 //        Set<Role> allSetRoles = new HashSet<>();
 //        Role roleFirst = new Role((long) 0, "ADMIN");

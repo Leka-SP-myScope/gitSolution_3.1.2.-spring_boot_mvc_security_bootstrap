@@ -18,18 +18,18 @@ public class RoleConverter {
     }
 
     public Role fromRoleDtoToRole(RoleDto roleDto) {
-        Role role = modelMapper.map(roleDto, Role.class);
-//        Role role = new Role();
-//        role.setId(roleDto.getId());
-//        role.setRole(roleDto.getRoleName());
+        //Role role = modelMapper.map(roleDto, Role.class);
+        Role role = new Role();
+        role.setId(roleDto.getId());
+        role.setRole(roleDto.getRoleName());
         return role;
     }
 
     public RoleDto fromRoleToRoleDto(Role role) {
-        RoleDto roleDto = modelMapper.map(role, RoleDto.class);
-//        RoleDto roleDto = new RoleDto();
-//        roleDto.setId(role.getId());
-//        roleDto.setRoleName(role.getRole());
+        //RoleDto roleDto = modelMapper.map(role, RoleDto.class);
+        RoleDto roleDto = new RoleDto();
+        roleDto.setId(role.getId());
+        roleDto.setRoleName(role.getRole());
         return roleDto;
     }
 }

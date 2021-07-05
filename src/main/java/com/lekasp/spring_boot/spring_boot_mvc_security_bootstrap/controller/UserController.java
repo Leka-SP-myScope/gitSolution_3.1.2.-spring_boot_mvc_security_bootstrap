@@ -1,10 +1,11 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.controller;
 
-import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.RoleDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.RoleRepository;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.RoleConverter;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.RoleService;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserConverter;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +14,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
-    private UserConverter userConverter;
+    private final UserConverter userConverter;
     private final RoleRepository roleRepository;
+    private final RoleService roleService;
+    private final RoleConverter roleConverter;
 
     @Autowired
-    public UserController(@Qualifier("userServiceImpl") UserService userService, UserConverter userConverter, RoleRepository roleRepository) {
+    public UserController(@Qualifier("userServiceImpl") UserService userService,
+                          UserConverter userConverter,
+                          RoleRepository roleRepository,
+                          RoleService roleService,
+                          RoleConverter roleConverter) {
         this.userService = userService;
         this.userConverter = userConverter;
         this.roleRepository = roleRepository;
+        this.roleService = roleService;
+        this.roleConverter = roleConverter;
     }
 
     @GetMapping
@@ -179,10 +184,10 @@ public class UserController {
 
         if(rolesName.equals("ADMIN")) {
             //userDto.addRoleDto(new RoleDto("ADMIN"));
-            userDto.setRoles(userService.getAdminRole());
+            userDto.setRoles(roleService.getAdminRole());
         } else if (rolesName.equals("USER")) {
             //userDto.addRoleDto(new RoleDto("USER"));
-            userDto.setRoles(userService.getUserRole());
+            userDto.setRoles(roleService.getUserRole());
         }
         //Set<Role> allRoles = userService.getSetRoles();
 
@@ -204,8 +209,12 @@ public class UserController {
 //            roleUser.add(new Role((long) 1, "USER"));
 //            userDto.setRoles(roleUser);
 //        }
+
+        Role saveRole = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
         System.out.println(userDto);
         userService.saveUser(userDto);
+        Role saveRolefromDB = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
+        roleService.saveRole(roleConverter.fromRoleToRoleDto(saveRolefromDB));
         System.out.println(userDto);
         return "redirect:/admin/users";
     }
