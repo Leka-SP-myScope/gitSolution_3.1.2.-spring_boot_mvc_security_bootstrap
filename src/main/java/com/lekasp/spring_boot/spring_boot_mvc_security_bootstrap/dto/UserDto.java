@@ -2,6 +2,7 @@ package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto;
 
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -12,28 +13,24 @@ public class UserDto {
     private String password;
     private int age;
     private String email;
-    //private Set<Role> roles;
+    private Set<Role> roles;
     private List<RoleDto> roleDtos;
-
-    public List<RoleDto> getRoleDtos() {
-        return roleDtos;
-    }
-
-    public void setRoleDtos(List<RoleDto> roleDtos) {
-        this.roleDtos = roleDtos;
-    }
+    private String rolesName;
 
     public UserDto() {
+        this.roleDtos = new ArrayList<>();
     }
 
-    public UserDto(Long id, String name, String surname, String password, int age, String email, List<RoleDto> roleDtos) {
+    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, List<RoleDto> roleDtos, String rolesName) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.age = age;
         this.email = email;
+        this.roles = roles;
         this.roleDtos = roleDtos;
+        this.rolesName = rolesName;
     }
 
 //    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles) {
@@ -94,13 +91,33 @@ public class UserDto {
         this.email = email;
     }
 
-//    public Set<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Set<Role> roles) {
-//        this.roles = roles;
-//    }
+    public List<RoleDto> getRoleDtos() {
+        return roleDtos;
+    }
+
+    public void setRoleDtos(List<RoleDto> roleDtos) {
+        this.roleDtos = roleDtos;
+    }
+
+    public void addRoleDto(RoleDto roleDto) {
+        this.roleDtos.add(roleDto);
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getRolesName() {
+        return rolesName;
+    }
+
+    public void setRolesName(String rolesName) {
+        this.rolesName = rolesName;
+    }
 
     @Override
     public String toString() {
@@ -111,7 +128,9 @@ public class UserDto {
                 ", password='" + password + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
+                ", roles=" + roles +
                 ", roleDtos=" + roleDtos +
+                ", rolesName='" + rolesName + '\'' +
                 '}';
     }
 }

@@ -105,6 +105,10 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
     @Override
     public String toString() {
         return "User{" +

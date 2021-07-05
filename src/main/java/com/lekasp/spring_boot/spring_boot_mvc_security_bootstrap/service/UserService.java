@@ -25,7 +25,7 @@ public interface UserService {
 
     List<RoleDto> getRoles();
 
-    //Set<RoleDto> getSetRoles();
+    Set<RoleDto> getSetRoles();
 
-    Set<Role> getSetRoles();
+    //Set<Role> getSetRoles();
 }
