@@ -52,9 +52,23 @@ public class Role implements GrantedAuthority {
         return role;
     }
 
+//    @Override
+//    public String toString() {
+//        return role;
+//    }
+
+
     @Override
     public String toString() {
         return role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

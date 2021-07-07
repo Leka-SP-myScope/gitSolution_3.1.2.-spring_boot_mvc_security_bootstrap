@@ -178,9 +178,12 @@ public class UserController {
 
     @PostMapping("/admin/users")
     public String createUser(@ModelAttribute("user") UserDto userDto,
-                             @RequestParam("rolesName") String rolesName) {
-        //System.out.println(roleDtos);
+                             @RequestParam("rolesName") String rolesName,
+                             Model model) {
         System.out.println(rolesName);
+        System.out.println(userDto);
+
+
 
         if(rolesName.equals("ADMIN")) {
             //userDto.addRoleDto(new RoleDto("ADMIN"));
@@ -194,7 +197,7 @@ public class UserController {
         //Set<RoleDto> allRolesDto = new HashSet<>((userService.getRoles()));
         //System.out.println(allRolesDto);
 
-        System.out.println("User without rolesSet: " + userDto);
+        System.out.println("User with rolesSet: " + userDto);
         //List<RoleDto> getRoles = userService.getRoles();
 
         //Role roleAdmin = rolesSet.stream().filter(item ->item.getId()==0).findFirst().get();
@@ -210,12 +213,15 @@ public class UserController {
 //            userDto.setRoles(roleUser);
 //        }
 
-        Role saveRole = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
-        System.out.println(userDto);
+//        Role saveRole = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
+//        System.out.println(userDto);
         userService.saveUser(userDto);
         Role saveRolefromDB = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
         roleService.saveRole(roleConverter.fromRoleToRoleDto(saveRolefromDB));
         System.out.println(userDto);
+
+        List<UserDto> allUser = userService.getAllUser();
+        model.addAttribute("allUser", allUser);
         return "redirect:/admin/users";
     }
 }

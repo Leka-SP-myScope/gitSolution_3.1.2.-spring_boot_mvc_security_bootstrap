@@ -31,8 +31,11 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id")
     private Set<Role> roles = new HashSet<>();
+
 
     public User() {
     }

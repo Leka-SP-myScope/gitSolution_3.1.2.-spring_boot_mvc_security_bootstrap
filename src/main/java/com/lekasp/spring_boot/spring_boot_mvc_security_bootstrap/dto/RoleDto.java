@@ -3,6 +3,7 @@ package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto;
 public class RoleDto {
     private Long id;
     private String roleName;
+    private UserDto userDto;
 
     public RoleDto() {
     }

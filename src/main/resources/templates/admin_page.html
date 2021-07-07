@@ -74,7 +74,13 @@
                                                         <td class="border-right-0"
                                                             th:each="userRole : ${message.roles}"
                                                             th:if="${userRole.role.startsWith('ROLE_')}"
-                                                            th:text="${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
+                                                            th:text="${userRole.role.startsWith('ROLE_')}? ${userRole.role.replaceFirst('ROLE_', '')} : ${userRole}">Cell 6
+<!--                                                            th:text="${userRole.role, userRole.role.replaceFirst('ROLE_', '')}">Cell 6-->
+<!--                                                            th:if="${message.roles.role.startsWith('ROLE_')}"-->
+<!--                                                            th:text="${message.roles.role.replaceFirst('ROLE_', '')}">Cell 6-->
+<!--                                                            th:each="userRole : ${message.roles}"-->
+<!--                                                            th:if="${userRole.role.startsWith('ROLE_')}"-->
+<!--                                                            th:text="${userRole.role.replaceFirst('ROLE_', '')}">Cell 6-->
                                                         </td>
                                                         <td><button id="btnEditModal" class="btn btn-info" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Edit</button></td>
                                                         <td class="border-right-0"><button id="btnDeleteModal" class="btn btn-danger" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Delete</button></td>
