@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -73,8 +73,9 @@
                                                         <td th:text="${message.email}">Cell 5</td>
                                                         <td class="border-right-0"
                                                             th:each="userRole : ${message.roles}"
-                                                            th:if="${userRole.role.startsWith('ROLE_')}"
-                                                            th:text="${userRole.role.startsWith('ROLE_')}? ${userRole.role.replaceFirst('ROLE_', '')} : ${userRole}">Cell 6
+                                                            th:text="${!userRole.role.startsWith('ROLE_')}? ${userRole.role}: ${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
+<!--                                                            th:if="${userRole.role.startsWith('ROLE_')}"-->
+<!--                                                            th:text="${!userRole.role.startsWith('ROLE_')}? ${userRole.role.replaceFirst('ROLE_', '')} : ${userRole.role}">Cell 6-->
 <!--                                                            th:text="${userRole.role, userRole.role.replaceFirst('ROLE_', '')}">Cell 6-->
 <!--                                                            th:if="${message.roles.role.startsWith('ROLE_')}"-->
 <!--                                                            th:text="${message.roles.role.replaceFirst('ROLE_', '')}">Cell 6-->
@@ -120,7 +121,9 @@
 <!--/*                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" th:field="*{roles}">*/-->
 <!--/*                                                            <option th:each="role:${user.roles}" th:value="${role.id}" th:text="${role.role}"></option>*/-->
 <!--/*                                                            <option th:each="role : ${user.getRoleDtos()}" th:value="${role.roleName}" th:text="${role.roleName}"></option>*/-->
-                                                            <option th:each="role : ${listRoles}" th:value="${role}" th:text="${role}"></option>
+                                                               <th:block th:each="role : ${listRoles}">
+                                                                <option  th:value="${role}" th:text="${role}"></option>
+                                                               </th:block>
 <!--/*                                                            <option th:each="role:${user.roles}" th:value="${role.role}" th:text="${role.role}"></option>*/-->
 <!--/*                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" id="roles" name="roles">*/-->
 
@@ -194,8 +197,7 @@
                                                 <td th:text="${message.email}">Cell 5</td>
                                                 <td class="border-right-0"
                                                     th:each="userRole : ${message.roles}"
-                                                    th:if="${userRole.role.startsWith('ROLE_')}"
-                                                    th:text="${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
+                                                    th:text="${!userRole.role.startsWith('ROLE_')}? ${userRole.role}: ${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
                                                 </td>
                                             </tr>
                                             </tbody>
