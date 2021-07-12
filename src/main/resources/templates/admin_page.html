@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <meta charset="utf-8">
@@ -10,21 +12,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light navbar-expand-md navigation-clean">
-    <div class="container-fluid">
-        <div class="container my-nav-container1">
-            <b><label class="text-lowercase text-center text-light" id="email-nav" for="email" th:text="${#authentication.getPrincipal().getEmail()}">user@mail.ru</label></b>
-            <label class="text-center" id="text">with roles:</label>
-            <label class="text-uppercase text-left" id="role-nav" for="role" th:text="${#authentication.getPrincipal().getUsername()}">user</label>
-        </div>
-        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link text-center text-secondary my-nav-link-logout" href="/login">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:replace="fragments :: header">Header</div>
 <div class="row no-gutters">
     <div class="col-2">
         <div id="v-pills-tab" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical"><a id="v-pills-admin-tab" class="nav-link active" href="#v-pills-admin" data-toggle="pill" role="tab" aria-controls="v-pills-admin" aria-selected="false">Admin</a><a id="v-pills-user-tab" class="nav-link" href="#v-pills-user" data-toggle="pill" role="tab" aria-controls="v-pills-user" aria-selected="true">User</a></div>
@@ -74,17 +62,11 @@
                                                         <td class="border-right-0"
                                                             th:each="userRole : ${message.roles}"
                                                             th:text="${!userRole.role.startsWith('ROLE_')}? ${userRole.role}: ${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
-<!--                                                            th:if="${userRole.role.startsWith('ROLE_')}"-->
-<!--                                                            th:text="${!userRole.role.startsWith('ROLE_')}? ${userRole.role.replaceFirst('ROLE_', '')} : ${userRole.role}">Cell 6-->
-<!--                                                            th:text="${userRole.role, userRole.role.replaceFirst('ROLE_', '')}">Cell 6-->
-<!--                                                            th:if="${message.roles.role.startsWith('ROLE_')}"-->
-<!--                                                            th:text="${message.roles.role.replaceFirst('ROLE_', '')}">Cell 6-->
-<!--                                                            th:each="userRole : ${message.roles}"-->
-<!--                                                            th:if="${userRole.role.startsWith('ROLE_')}"-->
-<!--                                                            th:text="${userRole.role.replaceFirst('ROLE_', '')}">Cell 6-->
                                                         </td>
-                                                        <td><button id="btnEditModal" class="btn btn-info" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Edit</button></td>
-                                                        <td class="border-right-0"><button id="btnDeleteModal" class="btn btn-danger" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Delete</button></td>
+                                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                                            <td><button id="btnEditModal" class="btn btn-info" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Edit</button></td>
+                                                            <td class="border-right-0"><button id="btnDeleteModal" class="btn btn-danger" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Delete</button></td>
+                                                        </div>
                                                     </tr>
                                                     </tbody>
                                                 </table>
