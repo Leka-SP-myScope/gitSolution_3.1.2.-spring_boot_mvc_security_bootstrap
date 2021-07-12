@@ -43,4 +43,13 @@ public class RoleServiceImpl implements RoleService {
         userRole.add(roleUser);
         return userRole;
     }
+
+    public Set<Role> getAllRoles() {
+        Set<Role> allRoles = new HashSet<>();
+        Role roleAdmin = new Role("ADMIN");
+        Role roleUser = new Role("USER");
+        allRoles.add(roleAdmin);
+        allRoles.add(roleUser);
+        return allRoles;
+    }
 }

@@ -191,6 +191,8 @@ public class UserController {
         } else if (rolesName.equals("USER")) {
             //userDto.addRoleDto(new RoleDto("USER"));
             userDto.setRoles(roleService.getUserRole());
+        } else {
+            userDto.setRoles(roleService.getAllRoles());
         }
         //Set<Role> allRoles = userService.getSetRoles();
 
@@ -216,7 +218,7 @@ public class UserController {
 //        Role saveRole = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
 //        System.out.println(userDto);
         userService.saveUser(userDto);
-        Role saveRolefromDB = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
+        Role saveRolefromDB = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findAny().get();
         roleService.saveRole(roleConverter.fromRoleToRoleDto(saveRolefromDB));
         System.out.println(userDto);
 

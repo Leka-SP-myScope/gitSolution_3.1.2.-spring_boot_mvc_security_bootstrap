@@ -15,4 +15,6 @@ public interface RoleService {
 
     public Set<Role> getUserRole();
 
+    public Set<Role> getAllRoles();
+
 }
