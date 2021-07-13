@@ -218,8 +218,8 @@ public class UserController {
 //        Role saveRole = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findFirst().get();
 //        System.out.println(userDto);
         userService.saveUser(userDto);
-        Role saveRolefromDB = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findAny().get();
-        roleService.saveRole(roleConverter.fromRoleToRoleDto(saveRolefromDB));
+//        Role saveRolefromDB = (userDto.getRoles()).stream().filter(item ->item.getRole().equals(rolesName)).findAny().get();
+//        roleService.saveRole(roleConverter.fromRoleToRoleDto(saveRolefromDB));
         System.out.println(userDto);
 
         List<UserDto> allUser = userService.getAllUser();
