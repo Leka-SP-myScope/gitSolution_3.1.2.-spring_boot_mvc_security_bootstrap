@@ -11,6 +11,8 @@ import java.util.Set;
 
 public interface UserService {
 
+    //void addRolesToUsers();
+
     List<UserDto> getAllUser();
 
     //User getUserByName(String name);

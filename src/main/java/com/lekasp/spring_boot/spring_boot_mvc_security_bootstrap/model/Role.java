@@ -71,13 +71,19 @@ public class Role implements GrantedAuthority {
 //        this.users = users;
 //    }
 
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Role role1 = (Role) o;
+//        return id.equals(role1.id) &&
+//                role.equals(role1.role);
+//    }
+
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role1 = (Role) o;
-        return id.equals(role1.id) &&
-                role.equals(role1.role);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override

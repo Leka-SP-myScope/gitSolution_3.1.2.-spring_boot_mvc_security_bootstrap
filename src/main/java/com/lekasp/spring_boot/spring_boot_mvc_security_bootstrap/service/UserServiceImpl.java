@@ -4,6 +4,7 @@ import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.RoleDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.RoleRepository;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,25 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserConverter userConverter;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter) {
+    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.userConverter = userConverter;
+        this.roleRepository = roleRepository;
     }
+
+//    public void addRolesToUsers() {
+//        Role roleAdmin = roleRepository.getOne(1L);
+//        Role roleUser = roleRepository.getOne(2L);
+//        User userAdmin = userRepository.getOne(1L);
+//        User userUser = userRepository.getOne(2L);
+//        userAdmin.addRole(roleAdmin);
+//        userUser.addRole(roleUser);
+//        userRepository.save(userAdmin);
+//        userRepository.save(userUser);
+//    }
 
     @Override
     public List<UserDto> getAllUser() {
@@ -57,18 +71,6 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-//    public List<Set<Role>> getRoles() {
-//        List<Set<Role>> allRoles = new ArrayList<>();
-//        Set<Role> roleFirst = new HashSet<>();
-//        roleFirst.add(new Role((long) 0, "ADMIN"));
-//        Set<Role> roleSecond = new HashSet<>();
-//        roleSecond.add(new Role((long) 1, "USER"));
-//        allRoles.add(roleFirst);
-//        allRoles.add(roleSecond);
-//        System.out.println(allRoles);
-//        return allRoles;
-//    }
-
     public List<RoleDto> getRoles() {
         List<RoleDto> allRoles = new ArrayList<>();
         RoleDto roleFirst = new RoleDto((long) 0, "ADMIN");
@@ -94,14 +96,4 @@ public class UserServiceImpl implements UserService {
         System.out.println(allSetRoles);
         return allSetRoles;
     }
-
-//    public Set<Role> getSetRoles() {
-//        Set<Role> allSetRoles = new HashSet<>();
-//        Role roleFirst = new Role((long) 0, "ADMIN");
-//        Role roleSecond = new Role((long) 1, "USER");
-//        allSetRoles.add(roleFirst);
-//        allSetRoles.add(roleSecond);
-//        System.out.println(allSetRoles);
-//        return allSetRoles;
-//    }
 }

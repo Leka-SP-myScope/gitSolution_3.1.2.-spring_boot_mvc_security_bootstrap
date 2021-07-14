@@ -106,7 +106,8 @@ public class UserController {
         List<String> listRoles = Arrays.asList("ADMIN", "USER");
 */
         UserDto user = new UserDto();
-        model.addAttribute("listRoles", userService.getRolesStrings());
+        model.addAttribute("listRoles", roleRepository.findAll());
+        //model.addAttribute("listRoles", userService.getRolesStrings());
         model.addAttribute("allUser", allUser);
         model.addAttribute("user", user);
         //System.out.println(model.addAttribute("user", user));
