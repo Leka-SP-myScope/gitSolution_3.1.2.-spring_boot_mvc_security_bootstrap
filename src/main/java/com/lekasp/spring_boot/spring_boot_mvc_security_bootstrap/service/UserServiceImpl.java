@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +34,12 @@ public class UserServiceImpl implements UserService {
         return userConverter.fromUserToUserDto(userRepository.getUserByName(name)
                 .orElseThrow(() -> new NoResultException("No User by: " + name + " present")));
     }
+
+    /*@Override
+    public UserDto getUserByName(String name) {
+        return userConverter.fromUserToUserDto(userRepository.getUserByName(name)
+                .orElseThrow(() -> new NoResultException("No User by: " + name + " present")));
+    }*/
 
     @Override
     public UserDto findById(Long id) {
@@ -74,6 +77,12 @@ public class UserServiceImpl implements UserService {
         allRoles.add(roleSecond);
         System.out.println(allRoles);
         return allRoles;
+    }
+
+    public List<String> getRolesStrings() {
+        List<String> listRoles = Arrays.asList("ADMIN", "USER");
+        System.out.println(listRoles);
+        return listRoles;
     }
 
     public Set<RoleDto> getSetRoles() {

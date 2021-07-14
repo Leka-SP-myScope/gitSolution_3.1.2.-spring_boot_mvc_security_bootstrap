@@ -3,6 +3,8 @@ package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -11,15 +13,19 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false, length = 45)
     private String role;
 
-    @ManyToOne
-    //@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id")
-    private User user;
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+//    //@ManyToOne(fetch = FetchType.LAZY)
+//    //@JoinColumn(name = "users_id")
+//    private Set<User> users = new HashSet<>();
 
     public Role() {
+    }
+
+    public Role(Long id) {
+        this.role = role;
     }
 
     public Role(String role) {
@@ -52,33 +58,27 @@ public class Role implements GrantedAuthority {
         return role;
     }
 
-//    @Override
-//    public String toString() {
-//        return role;
-//    }
-
-
     @Override
     public String toString() {
         return role;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Role role1 = (Role) o;
-//        return id.equals(role1.id) &&
-//                role.equals(role1.role);
+//    public Set<User> getUser() {
+//        return users;
 //    }
+//
+//    public void setUser(Set<User> users) {
+//        this.users = users;
+//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role1 = (Role) o;
+        return id.equals(role1.id) &&
+                role.equals(role1.role);
+    }
 
     @Override
     public int hashCode() {

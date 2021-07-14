@@ -1,5 +1,6 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.controller;
 
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.RoleDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
@@ -100,13 +101,38 @@ public class UserController {
     @GetMapping("/admin/users")
     public String getAllUser2(Model model) {
         List<UserDto> allUser = userService.getAllUser();
+/*
+        Working with String value
         List<String> listRoles = Arrays.asList("ADMIN", "USER");
+*/
         UserDto user = new UserDto();
-        model.addAttribute("listRoles", listRoles);
+        model.addAttribute("listRoles", userService.getRolesStrings());
         model.addAttribute("allUser", allUser);
         model.addAttribute("user", user);
         //System.out.println(model.addAttribute("user", user));
         return "admin_page";
+    }
+
+    @PostMapping("/admin/users")
+    public String createUser(@ModelAttribute("user") UserDto userDto,
+                             @RequestParam("rolesNameList") List<String> rolesNameList,
+                             Model model) {
+
+        //String getRoleName = rolesNameList.stream().findAny().get();
+
+        for (String roleName : rolesNameList) {
+            System.out.println(roleName);
+            if(roleName.equals("ADMIN")) {
+                userDto.setRoles(roleService.getAdminRole());
+            } else if (roleName.equals("USER")) {
+                userDto.setRoles(roleService.getUserRole());
+            } else {
+                userDto.setRoles(roleService.getAllRoles());
+            }
+        }
+        List<UserDto> allUser = userService.getAllUser();
+        model.addAttribute("allUser", allUser);
+        return "redirect:/admin/users";
     }
 
 //    @GetMapping("/admin/user_create")
@@ -176,7 +202,26 @@ public class UserController {
 //        return "redirect:/admin/users";
 //    }
 
+/*
+    Working with String value
     @PostMapping("/admin/users")
+    public String createUser(@ModelAttribute("user") UserDto userDto,
+                             @RequestParam("rolesName") String rolesName,
+                             Model model) {
+        if(rolesName.equals("ADMIN")) {
+            userDto.setRoles(roleService.getAdminRole());
+        } else if (rolesName.equals("USER")) {
+            userDto.setRoles(roleService.getUserRole());
+        } else {
+            userDto.setRoles(roleService.getAllRoles());
+        }
+        List<UserDto> allUser = userService.getAllUser();
+        model.addAttribute("allUser", allUser);
+        return "redirect:/admin/users";
+    }
+*/
+
+   /* @PostMapping("/admin/users")
     public String createUser(@ModelAttribute("user") UserDto userDto,
                              @RequestParam("rolesName") String rolesName,
                              Model model) {
@@ -225,5 +270,5 @@ public class UserController {
         List<UserDto> allUser = userService.getAllUser();
         model.addAttribute("allUser", allUser);
         return "redirect:/admin/users";
-    }
+    }*/
 }

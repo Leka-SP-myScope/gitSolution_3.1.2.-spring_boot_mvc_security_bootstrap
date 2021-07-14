@@ -13,6 +13,8 @@ public interface UserService {
 
     List<UserDto> getAllUser();
 
+    //User getUserByName(String name);
+
     UserDto getUserByName(String name);
 
     UserDto findById(Long id);
@@ -28,5 +30,7 @@ public interface UserService {
     Set<RoleDto> getSetRoles();
 
     //Set<Role> getSetRoles();
+
+    List<String> getRolesStrings();
 
 }

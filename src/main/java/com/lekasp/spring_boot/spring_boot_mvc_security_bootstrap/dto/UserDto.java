@@ -14,14 +14,19 @@ public class UserDto {
     private int age;
     private String email;
     private Set<Role> roles;
+    private List<String> rolesNameList = new ArrayList<>();
     //private List<RoleDto> roleDtos;
+
+/*
+    Working with String value
     private String rolesName;
+*/
 
     public UserDto() {
         //this.roleDtos = new ArrayList<>();
     }
 
-    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, String rolesName) {
+    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, List<String> rolesNameList) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -29,8 +34,22 @@ public class UserDto {
         this.age = age;
         this.email = email;
         this.roles = roles;
-        this.rolesName = rolesName;
+        this.rolesNameList = rolesNameList;
     }
+
+    /*Working with String value
+//    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, String rolesName) {
+//        this.id = id;
+//        this.name = name;
+//        this.surname = surname;
+//        this.password = password;
+//        this.age = age;
+//        this.email = email;
+//        this.roles = roles;
+//        this.rolesName = rolesName;
+//    }
+
+     */
 
 //    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, List<RoleDto> roleDtos, String rolesName) {
 //        this.id = id;
@@ -122,12 +141,21 @@ public class UserDto {
         this.roles = roles;
     }
 
-    public String getRolesName() {
-        return rolesName;
+    /* Working with String value
+//    public String getRolesName() {
+//        return rolesName;
+//    }
+//
+//    public void setRolesName(String rolesName) {
+//        this.rolesName = rolesName;
+//    }*/
+
+    public List<String> getRolesNameList() {
+        return rolesNameList;
     }
 
-    public void setRolesName(String rolesName) {
-        this.rolesName = rolesName;
+    public void setRolesNameList(List<String> rolesNameList) {
+        this.rolesNameList = rolesNameList;
     }
 
     @Override
@@ -140,7 +168,7 @@ public class UserDto {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", roles=" + roles +
-                ", rolesName='" + rolesName + '\'' +
+                ", rolesNameList='" + rolesNameList + '\'' +
                 '}';
     }
 }
