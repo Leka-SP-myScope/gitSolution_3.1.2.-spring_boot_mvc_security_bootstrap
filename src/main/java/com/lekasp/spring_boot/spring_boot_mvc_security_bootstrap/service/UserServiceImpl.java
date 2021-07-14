@@ -49,12 +49,6 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new NoResultException("No User by: " + name + " present")));
     }
 
-    /*@Override
-    public UserDto getUserByName(String name) {
-        return userConverter.fromUserToUserDto(userRepository.getUserByName(name)
-                .orElseThrow(() -> new NoResultException("No User by: " + name + " present")));
-    }*/
-
     @Override
     public UserDto findById(Long id) {
         return userConverter.fromUserToUserDto(userRepository.findById(id)
@@ -71,29 +65,14 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    public List<RoleDto> getRoles() {
-        List<RoleDto> allRoles = new ArrayList<>();
-        RoleDto roleFirst = new RoleDto((long) 0, "ADMIN");
-        RoleDto roleSecond = new RoleDto((long) 1, "USER");
-        allRoles.add(roleFirst);
-        allRoles.add(roleSecond);
-        System.out.println(allRoles);
-        return allRoles;
-    }
-
     public List<String> getRolesStrings() {
         List<String> listRoles = Arrays.asList("ADMIN", "USER");
         System.out.println(listRoles);
         return listRoles;
     }
 
-    public Set<RoleDto> getSetRoles() {
-        Set<RoleDto> allSetRoles = new HashSet<>();
-        RoleDto roleFirst = new RoleDto((long) 0, "ADMIN");
-        RoleDto roleSecond = new RoleDto((long) 1, "USER");
-        allSetRoles.add(roleFirst);
-        allSetRoles.add(roleSecond);
-        System.out.println(allSetRoles);
-        return allSetRoles;
-    }
+//    public Set<Role> getRolesFromList(List<String> roleList) {
+//        Set<Role> allGetRoles = roleList.stream().collect(Collectors.toSet());
+//    }
+
 }

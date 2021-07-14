@@ -16,7 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -119,13 +121,14 @@ public class UserController {
                              @RequestParam("rolesNameList") List<String> rolesNameList,
                              Model model) {
 
+
         //String getRoleName = rolesNameList.stream().findAny().get();
 
         for (String roleName : rolesNameList) {
             System.out.println(roleName);
-            if(roleName.equals("ADMIN")) {
+            if(roleName.equals("ROLE_ADMIN")) {
                 userDto.setRoles(roleService.getAdminRole());
-            } else if (roleName.equals("USER")) {
+            } else if (roleName.equals("ROLE_USER")) {
                 userDto.setRoles(roleService.getUserRole());
             } else {
                 userDto.setRoles(roleService.getAllRoles());
@@ -133,6 +136,8 @@ public class UserController {
         }
         List<UserDto> allUser = userService.getAllUser();
         model.addAttribute("allUser", allUser);
+        userService.saveUser(userDto);
+        System.out.println(userDto);
         return "redirect:/admin/users";
     }
 

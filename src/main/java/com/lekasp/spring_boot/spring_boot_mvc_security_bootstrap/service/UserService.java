@@ -15,8 +15,6 @@ public interface UserService {
 
     List<UserDto> getAllUser();
 
-    //User getUserByName(String name);
-
     UserDto getUserByName(String name);
 
     UserDto findById(Long id);
@@ -24,14 +22,6 @@ public interface UserService {
     void saveUser(UserDto userDto);
 
     void deleteById(Long id);
-
-    //List<Set<Role>> getRoles();
-
-    List<RoleDto> getRoles();
-
-    Set<RoleDto> getSetRoles();
-
-    //Set<Role> getSetRoles();
 
     List<String> getRolesStrings();
 
