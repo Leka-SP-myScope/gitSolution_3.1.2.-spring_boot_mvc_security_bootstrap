@@ -60,7 +60,10 @@
                                                         <td th:text="${message.age}">Cell 4</td>
                                                         <td th:text="${message.email}">Cell 5</td>
                                                         <td class="border-right-0"
-                                                            th:text="${{message.roles}}">Cell 6
+                                                            th:each="userRole : ${message.roles}"
+                                                            th:text="${!userRole.role.startsWith('ROLE_')}? ${userRole.role}: ${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
+<!--                                                            th:text="${!message.getRoles().startsWith('ROLE_')}?${message.roles..getRole()}: ${message.roles.getRole().replaceFirst('ROLE_', '')}">Cell 6-->
+<!--                                                            th:text="${{message.roles}}">Cell 6-->
 <!--                                                            th:text="${{${#strings.startsWith(message.roles,'ROLE_')}}}? ${{#strings.replace(message.roles,'ROLE_', '')}} : ${{message.roles}}">Cell 6-->
 <!--                                                            th:text="${{message.roles}}"-->
 <!--                                                            th:text="${{${#strings.startsWith(message.roles,'ROLE_')}}}? ${#strings.replace(message.roles,'ROLE_', '')} : ${{message.roles}}"-->
@@ -109,7 +112,8 @@
 <!--/*                                                            <option th:each="role:${user.roles}" th:value="${role.id}" th:text="${role.role}"></option>*/-->
 <!--/*                                                            <option th:each="role : ${user.getRoleDtos()}" th:value="${role.roleName}" th:text="${role.roleName}"></option>*/-->
                                                                <th:block th:each="role : ${listRoles}">
-                                                                <option  th:value="${role}" th:text="${role}"></option>
+                                                                <option  th:value="${!role.getRole().startsWith('ROLE_')}? ${role.getRole()}: ${role.getRole().replaceFirst('ROLE_', '')}"
+                                                                         th:text="${!role.getRole().startsWith('ROLE_')}? ${role.getRole()}: ${role.getRole().replaceFirst('ROLE_', '')}"></option>
                                                                </th:block>
 <!--/*                                                            <option th:each="role:${user.roles}" th:value="${role.role}" th:text="${role.role}"></option>*/-->
 <!--/*                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" id="roles" name="roles">*/-->

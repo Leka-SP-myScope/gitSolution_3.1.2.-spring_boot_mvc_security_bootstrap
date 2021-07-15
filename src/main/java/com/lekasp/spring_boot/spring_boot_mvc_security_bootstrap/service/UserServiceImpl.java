@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
     }
 
 //    public Set<Role> getRolesFromList(List<String> roleList) {
-//        Set<Role> allGetRoles = roleList.stream().collect(Collectors.toSet());
+//        return roleList.stream().map(Role::new).collect(Collectors.toSet());
 //    }
 
 }

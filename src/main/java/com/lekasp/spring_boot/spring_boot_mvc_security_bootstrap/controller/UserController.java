@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
@@ -96,64 +97,52 @@ public class UserController {
     @GetMapping("/user")
     public String getAllUser(Model model) {
         List<UserDto> allUser = userService.getAllUser();
-        model.addAttribute("allUser", allUser);
+        model.addAttribute("allUser", userService.getAllUser());
         return "user_page";
     }
 
     @GetMapping("/admin/users")
     public String getAllUser2(Model model) {
-        List<UserDto> allUser = userService.getAllUser();
-/*
-        Working with String value
-        List<String> listRoles = Arrays.asList("ADMIN", "USER");
-*/
-        UserDto user = new UserDto();
+        model.addAttribute("allUser", userService.getAllUser());
         model.addAttribute("listRoles", roleRepository.findAll());
-        //model.addAttribute("listRoles", userService.getRolesStrings());
-        model.addAttribute("allUser", allUser);
-        model.addAttribute("user", user);
-        //System.out.println(model.addAttribute("user", user));
+        model.addAttribute("user", new UserDto());
         return "admin_page";
     }
 
     @PostMapping("/admin/users")
     public String createUser(@ModelAttribute("user") UserDto userDto,
-                             @RequestParam("rolesNameList") List<String> rolesNameList,
-                             Model model) {
+                             @RequestParam("rolesNameList") List<String> rolesNameList) {
+
+
+//        List<String> gettingRolesFromUserDto = userDto.getRoles().stream()
+//                .map(Role::getRole)
+//                .collect(Collectors.toList());
 
 
         //String getRoleName = rolesNameList.stream().findAny().get();
 
-        for (String roleName : rolesNameList) {
-            System.out.println(roleName);
-            if(roleName.equals("ROLE_ADMIN")) {
-                userDto.setRoles(roleService.getAdminRole());
-            } else if (roleName.equals("ROLE_USER")) {
-                userDto.setRoles(roleService.getUserRole());
-            } else {
-                userDto.setRoles(roleService.getAllRoles());
-            }
-        }
-        List<UserDto> allUser = userService.getAllUser();
-        model.addAttribute("allUser", allUser);
+//
         userService.saveUser(userDto);
         System.out.println(userDto);
         return "redirect:/admin/users";
     }
 
-//    @GetMapping("/admin/user_create")
-//    public String createUserAndShow2(User user) {
+
+//    @GetMapping("/admin/users")
+//    public String getAllUser2(Model model) {
+//        List<UserDto> allUser = userService.getAllUser();
+///*
+//        Working with String value
+//        List<String> listRoles = Arrays.asList("ADMIN", "USER");
+//*/
+//        UserDto user = new UserDto();
+//        model.addAttribute("listRoles", roleRepository.findAll());
+//        //model.addAttribute("listRoles", userService.getRolesStrings());
+//        model.addAttribute("allUser", allUser);
+//        model.addAttribute("user", user);
+//        //System.out.println(model.addAttribute("user", user));
 //        return "admin_page";
 //    }
-
-//    @ModelAttribute("roles")
-//    public Set<Role> getRoles(){
-//        Set<Role> allRoles = new HashSet<>();
-//        allRoles.add(new Role((long) 0,"ADMIN"));
-//        allRoles.add(new Role((long) 1,"USER"));
-//        return allRoles;
-//    }
-
 //    @PostMapping("/admin/users")
 //    public String createUser(@ModelAttribute("user") UserDto userDto,
 //                             @RequestParam("rolesSet") Set<Role> rolesSet) {
