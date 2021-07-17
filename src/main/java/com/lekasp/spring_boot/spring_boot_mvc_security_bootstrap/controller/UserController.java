@@ -122,6 +122,9 @@ public class UserController {
         //String getRoleName = rolesNameList.stream().findAny().get();
 
 //
+        //Role role = rolesNameList.get()
+        userDto.setRoles(userService.getRolesFromList(rolesNameList));
+
         userService.saveUser(userDto);
         System.out.println(userDto);
         return "redirect:/admin/users";

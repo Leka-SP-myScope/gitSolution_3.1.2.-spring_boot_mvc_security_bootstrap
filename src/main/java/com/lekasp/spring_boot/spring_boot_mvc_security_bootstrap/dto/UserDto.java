@@ -37,42 +37,6 @@ public class UserDto {
         this.rolesNameList = rolesNameList;
     }
 
-    /*Working with String value
-//    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, String rolesName) {
-//        this.id = id;
-//        this.name = name;
-//        this.surname = surname;
-//        this.password = password;
-//        this.age = age;
-//        this.email = email;
-//        this.roles = roles;
-//        this.rolesName = rolesName;
-//    }
-
-     */
-
-//    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, List<RoleDto> roleDtos, String rolesName) {
-//        this.id = id;
-//        this.name = name;
-//        this.surname = surname;
-//        this.password = password;
-//        this.age = age;
-//        this.email = email;
-//        this.roles = roles;
-//        this.roleDtos = roleDtos;
-//        this.rolesName = rolesName;
-//    }
-
-//    public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles) {
-//        this.id = id;
-//        this.name = name;
-//        this.surname = surname;
-//        this.password = password;
-//        this.age = age;
-//        this.email = email;
-//        this.roles = roles;
-//    }
-
     public Long getId() {
         return id;
     }
@@ -139,6 +103,10 @@ public class UserDto {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 
     /* Working with String value

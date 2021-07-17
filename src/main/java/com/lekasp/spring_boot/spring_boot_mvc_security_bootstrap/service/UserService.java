@@ -25,4 +25,6 @@ public interface UserService {
 
     List<String> getRolesStrings();
 
+    public Set<Role> getRolesFromList(List<String> roleList);
+
 }
