@@ -75,4 +75,20 @@ public class UserServiceImpl implements UserService {
         return roleList.stream().map(roleRepository::findByName).collect(Collectors.toSet());
     }
 
+//    public Set<Role> getRolesFromList(List<String> roleList) {
+//        List<Role> getRoles = roleList.stream().map(temp -> {
+//            Role role = new Role();
+//            role.setRole(roleRepository.findByName(temp).getRole());
+//            return role;
+//        }).collect(Collectors.toList());
+//
+//        return getRoles.stream().collect(Collectors.toSet());
+//    }
+
+//    public Set<Role> getRolesFromList(List<String> roleList) {
+//        List<Role> getRoles = roleList.stream().map(Role::new).collect(Collectors.toList());
+//
+//        getRoles.stream().map(roleRepository::findByName).collect(Collectors.toSet());
+//        return getRoles.stream().collect(Collectors.toSet());
+//    }
 }
