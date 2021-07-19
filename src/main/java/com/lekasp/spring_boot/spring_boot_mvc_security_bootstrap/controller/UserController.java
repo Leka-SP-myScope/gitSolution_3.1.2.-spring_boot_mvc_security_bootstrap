@@ -112,21 +112,9 @@ public class UserController {
     @PostMapping("/admin/users")
     public String createUser(@ModelAttribute("user") UserDto userDto,
                              @RequestParam("rolesNameList") List<String> rolesNameList) {
-
-
-//        List<String> gettingRolesFromUserDto = userDto.getRoles().stream()
-//                .map(Role::getRole)
-//                .collect(Collectors.toList());
-
-
-        //String getRoleName = rolesNameList.stream().findAny().get();
-
-//
-        //Role role = rolesNameList.get()
         userDto.setRoles(userService.getRolesFromList(rolesNameList));
-
         userService.saveUser(userDto);
-        System.out.println(userDto);
+        //System.out.println(userDto);
         return "redirect:/admin/users";
     }
 
