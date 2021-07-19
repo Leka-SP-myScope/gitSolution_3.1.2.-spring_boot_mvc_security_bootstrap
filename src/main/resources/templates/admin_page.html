@@ -148,8 +148,7 @@
                                                 <td th:text="${message.age}">Cell 4</td>
                                                 <td th:text="${message.email}">Cell 5</td>
                                                 <td class="border-right-0"
-                                                    th:each="userRole : ${message.roles}"
-                                                    th:text="${!userRole.role.startsWith('ROLE_')}? ${userRole.role}: ${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
+                                                    th:text="${#strings.startsWith(message.roles,'ROLE_')}?${{message.roles}}:${#strings.replace(message.roles,'ROLE_','')}">Cell 6
                                                 </td>
                                             </tr>
                                             </tbody>

@@ -5,30 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>user_page</title>
+    <title>User_page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Navigation-Clean.css" type="text/css">
 </head>
 
 <body>
-<nav class="navbar navbar-light navbar-expand-md navigation-clean">
-    <div class="container-fluid">
-        <div class="container my-nav-container1">
-                <b><label class="text-lowercase text-center text-light" id="email" for="email" th:text="${#authentication.getPrincipal().getEmail()}"></label></b>
-                <label class="text-center">with roles:</label>
-                <label class="text-uppercase text-left" id="role" for="role" th:text="${#authentication.getPrincipal().getUsername()}"></label>
-        </div>
-
-        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link text-center text-secondary my-nav-link-logout"
-                                        href="/login">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:replace="fragments :: header">Header</div>
 <div class="row no-gutters">
     <div class="col-2">
         <div id="v-pills-tab" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical"><a
@@ -71,9 +54,7 @@
                                                 <td th:text="${message.age}">Cell 4</td>
                                                 <td th:text="${message.email}">Cell 5</td>
                                                 <td class="border-right-0"
-                                                    th:each="userRole : ${message.roles}"
-                                                    th:if="${userRole.role.startsWith('ROLE_')}"
-                                                    th:text="${userRole.role.replaceFirst('ROLE_', '')}">Cell 6
+                                                    th:text="${#strings.startsWith(message.roles,'ROLE_')}?${{message.roles}}:${#strings.replace(message.roles,'ROLE_','')}">Cell 6
                                                 </td>
                                             </tr>
                                             </tbody>
