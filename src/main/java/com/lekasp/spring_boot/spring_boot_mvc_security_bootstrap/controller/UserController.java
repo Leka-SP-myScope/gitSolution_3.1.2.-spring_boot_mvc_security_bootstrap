@@ -72,18 +72,18 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("/admin/user_update/{id}")
-    public String saveUserAndShow(@PathVariable("id") Long id, Model model) {
-        User user = userConverter.fromUserDtoToUser(userService.findById(id));
-        model.addAttribute("user", user);
-        return "user_update";
-    }
+//    @GetMapping("/admin/user_update/{id}")
+//    public String saveUserAndShow(@PathVariable("id") Long id, Model model) {
+//        User user = userConverter.fromUserDtoToUser(userService.findById(id));
+//        model.addAttribute("user", user);
+//        return "user_update";
+//    }
 
-    @PostMapping("/admin/user_update")
-    public String saveUser(UserDto userDto) {
-        userService.saveUser(userDto);
-        return "redirect:/user";
-    }
+//    @PostMapping("/admin/user_update")
+//    public String saveUser(UserDto userDto) {
+//        userService.saveUser(userDto);
+//        return "redirect:/user";
+//    }
 
     @GetMapping("/login")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
@@ -115,6 +115,21 @@ public class UserController {
         userDto.setRoles(userService.getRolesFromList(rolesNameList));
         userService.saveUser(userDto);
         //System.out.println(userDto);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/admin/edit/{id}")
+    public String saveUserAndShow(@PathVariable("id") Long id, Model model) {
+        UserDto userDto = userService.findById(id);
+        //User user = userConverter.fromUserDtoToUser(userService.findById(id));
+        model.addAttribute("user", userDto);
+        model.addAttribute("listRoles", roleRepository.findAll());
+        return "admin_page";
+    }
+
+    @PostMapping("/admin/edit")
+    public String saveUser(UserDto userDto) {
+        userService.saveUser(userDto);
         return "redirect:/admin/users";
     }
 

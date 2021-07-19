@@ -63,7 +63,7 @@
                                                             th:text="${#strings.startsWith(message.roles,'ROLE_')}?${{message.roles}}:${#strings.replace(message.roles,'ROLE_','')}">Cell 6
                                                         </td>
                                                         <div sec:authorize="hasRole('ROLE_ADMIN')">
-                                                            <td><button id="btnEditModal" class="btn btn-info" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Edit</button></td>
+                                                            <td><button id="btnEditModal" class="btn btn-info" href="@{'/admin/edit/' + ${user.id}}" type="button" data-toggle="modal" data-target="#editAndDeleteModal" >Edit</button></td>
                                                             <td class="border-right-0"><button id="btnDeleteModal" class="btn btn-danger" type="button" data-toggle="modal" data-target="#editAndDeleteModal">Delete</button></td>
                                                         </div>
                                                     </tr>
@@ -93,7 +93,7 @@
                                                         <form class="text-center" method="post" th:action="@{/admin/users}" th:object="${user}">
                                                             <div class="form-group"><label id="labelFirstName" for="name"><strong>First name</strong></label><input class="form-control" type="text" th:field="*{name}" id="name" name="firstName" placeholder="First name" required=""></div>
                                                             <div class="form-group"><label id="labelLastName" for="surname"><strong>Last name</strong></label><input class="form-control" type="text" th:field="*{surname}" id="surname" name="lastName" placeholder="Last name" required=""></div>
-                                                            <div class="form-group"><label id="labelAge" for="age"><strong>Age</strong></label><input class="form-control" type="text" th:field="*{age}" id="age" name="age" placeholder="Age" required=""></div>
+                                                            <div class="form-group"><label id="labelAge" for="age"><strong>Age</strong></label><input class="form-control" type="number" th:field="*{age}" id="age" name="age" placeholder="Age" required=""></div>
                                                             <div class="form-group"><label id="labelEmail" for="email"><strong>Email</strong></label><input class="form-control" type="email" th:field="*{email}" id="email" placeholder="Email" name="email" required=""></div>
                                                             <div class="form-group"><label id="password" for="password"><strong>Password</strong></label><input class="form-control" type="password" th:field="*{password}" id="password1" name="password" placeholder="Password" required=""></div>
                                                            <div class="form-group"><label id="role" for="role"><strong>Role</strong></label>
@@ -178,17 +178,20 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 offset-3">
-                            <form class="text-center" method="post" action="#">
-                                <div class="form-group"><label id="labelID" for="id"><strong>ID</strong><br></label><input class="form-control" type="number" id="id" name="id" required=""></div>
-                                <div class="form-group"><label id="labelFirstName-1" for="firstName"><strong>First name</strong></label><input class="form-control" type="text" id="firstName-1" name="firstName" required=""></div>
-                                <div class="form-group"><label id="labelLastName-1" for="lastName"><strong>Last name</strong></label><input class="form-control" type="text" id="lastName-1" name="lastName" required=""></div>
-                                <div class="form-group"><label id="labelAge-1" for="age"><strong>Age</strong></label><input class="form-control" type="number" id="age-1" name="age" required=""></div>
-                                <div class="form-group"><label id="labelEmail-1" for="email"><strong>Email</strong></label><input class="form-control" type="email" id="email-1" name="email" required=""></div>
-                                <div class="form-group"><label id="password-1" for="password"><strong>Password</strong></label><input class="form-control" type="password" id="passwordAddNewUser-1" name="password" required=""></div>
-                                <div class="form-group"><label id="role-1" for="role"><strong>Role</strong></label><select class="form-control" id="roleSelectDelete" multiple="">
-                                    <option value="">ADMIN</option>
-                                    <option value="">USER</option>
-                                </select></div>
+                            <form class="text-center" method="post" action="#" th:action="@{/admin/edit}" th:object="${user}">
+                                <div class="form-group"><label id="labelID" for="id"><strong>ID</strong><br></label><input class="form-control" type="number" th:field="*{id}" id="id" name="id" required=""></div>
+<!--                                <div class="form-group"><label id="labelID" for="id"><strong>ID</strong><br></label><input class="form-control" type="hidden" th:field="*{id}" id="id" name="id" required=""></div>-->
+                                <div class="form-group"><label id="labelFirstName-1" for="firstName-1"><strong>First name</strong></label><input class="form-control" type="text" th:field="*{name}" id="firstName-1" name="firstName-1" required=""></div>
+                                <div class="form-group"><label id="labelLastName-1" for="lastName-1"><strong>Last name</strong></label><input class="form-control" type="text" th:field="*{surname}" id="lastName-1" name="lastName-1" required=""></div>
+                                <div class="form-group"><label id="labelAge-1" for="age"><strong>Age</strong></label><input class="form-control" type="number" th:field="*{age}" id="age-1" name="age" required=""></div>
+                                <div class="form-group"><label id="labelEmail-1" for="email"><strong>Email</strong></label><input class="form-control" type="email" th:field="*{email}" id="email-1" name="email" required=""></div>
+                                <div class="form-group"><label id="password-1" for="password"><strong>Password</strong></label><input class="form-control" type="password" th:field="*{password}" id="passwordAddNewUser-1" name="password" required=""></div>
+                                <div class="form-group"><label id="role-1" for="role-1"><strong>Role</strong></label>
+                                    <select class="form-control" multiple="multiple" th:field="*{rolesNameList}">
+                                        <option th:each="role : ${listRoles}" th:value="${!role.getRole().startsWith('ROLE_')}? ${role.getRole()}: ${role.getRole().replaceFirst('ROLE_', '')}"
+                                                th:text="${!role.getRole().startsWith('ROLE_')}? ${role.getRole()}: ${role.getRole().replaceFirst('ROLE_', '')}"></option>
+                                    </select>
+                                </div>
                             </form>
                         </div>
                     </div>
