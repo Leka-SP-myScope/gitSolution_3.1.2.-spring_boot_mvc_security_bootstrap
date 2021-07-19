@@ -23,8 +23,6 @@ public interface UserService {
 
     void deleteById(Long id);
 
-    List<String> getRolesStrings();
-
     public Set<Role> getRolesFromList(List<String> roleList);
 
 }

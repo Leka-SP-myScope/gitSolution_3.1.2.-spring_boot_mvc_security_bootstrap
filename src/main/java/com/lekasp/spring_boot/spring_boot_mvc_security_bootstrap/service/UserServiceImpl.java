@@ -1,16 +1,15 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
-import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.RoleDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
-import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.RoleRepository;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,17 +25,6 @@ public class UserServiceImpl implements UserService {
         this.userConverter = userConverter;
         this.roleRepository = roleRepository;
     }
-
-//    public void addRolesToUsers() {
-//        Role roleAdmin = roleRepository.getOne(1L);
-//        Role roleUser = roleRepository.getOne(2L);
-//        User userAdmin = userRepository.getOne(1L);
-//        User userUser = userRepository.getOne(2L);
-//        userAdmin.addRole(roleAdmin);
-//        userUser.addRole(roleUser);
-//        userRepository.save(userAdmin);
-//        userRepository.save(userUser);
-//    }
 
     @Override
     public List<UserDto> getAllUser() {
@@ -65,34 +53,7 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    public List<String> getRolesStrings() {
-        List<String> listRoles = Arrays.asList("ADMIN", "USER");
-        System.out.println(listRoles);
-        return listRoles;
-    }
-
-//    public Set<Role> getRolesFromList(List<String> roleList) {
-//        return roleList.stream().map(roleRepository::findByName).collect(Collectors.toSet());
-//    }
-
     public Set<Role> getRolesFromList(List<String> roleList) {
         return roleList.stream().map(role -> roleRepository.findByName("ROLE_" + role)).collect(Collectors.toSet());
     }
-
-//    public Set<Role> getRolesFromList(List<String> roleList) {
-//        List<Role> getRoles = roleList.stream().map(temp -> {
-//            Role role = new Role();
-//            role.setRole(roleRepository.findByName(temp).getRole());
-//            return role;
-//        }).collect(Collectors.toList());
-//
-//        return getRoles.stream().collect(Collectors.toSet());
-//    }
-
-//    public Set<Role> getRolesFromList(List<String> roleList) {
-//        List<Role> getRoles = roleList.stream().map(Role::new).collect(Collectors.toList());
-//
-//        getRoles.stream().map(roleRepository::findByName).collect(Collectors.toSet());
-//        return getRoles.stream().collect(Collectors.toSet());
-//    }
 }
