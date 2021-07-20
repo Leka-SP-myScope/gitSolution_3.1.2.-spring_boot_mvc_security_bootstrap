@@ -119,7 +119,7 @@ public class UserController {
     }
 
     @GetMapping("/admin/edit/{id}")
-    public String saveUserAndShow(@PathVariable("id") Long id, Model model) {
+    public String editUserAndShow(@PathVariable("id") Long id, Model model) {
         UserDto userDto = userService.findById(id);
         //User user = userConverter.fromUserDtoToUser(userService.findById(id));
         model.addAttribute("user", userDto);
@@ -127,11 +127,11 @@ public class UserController {
         return "admin_page";
     }
 
-    @PostMapping("/admin/edit")
-    public String saveUser(UserDto userDto) {
-        userService.saveUser(userDto);
-        return "redirect:/admin/users";
-    }
+//    @PostMapping("/admin/edit")
+//    public String saveUser(UserDto userDto) {
+//        userService.saveUser(userDto);
+//        return "redirect:/admin/users";
+//    }
 
 
 //    @GetMapping("/admin/users")

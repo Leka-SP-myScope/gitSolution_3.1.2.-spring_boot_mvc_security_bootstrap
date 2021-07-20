@@ -63,7 +63,7 @@
                                                             th:text="${#strings.startsWith(message.roles,'ROLE_')}?${{message.roles}}:${#strings.replace(message.roles,'ROLE_','')}">Cell 6
                                                         </td>
                                                         <div sec:authorize="hasRole('ROLE_ADMIN')">
-                                                            <td><button id="btnEditModal" class="btn btn-info" href="@{'/admin/edit/' + ${message.id}}" type="button" data-toggle="modal" data-target="#editModal" >Edit</button></td>
+                                                            <td><button id="btnEditModal" class="btn btn-info" type="button" data-toggle="modal" data-target="#editModal">Edit</button></td>
                                                             <td class="border-right-0"><button id="btnDeleteModal" class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
                                                         </div>
                                                     </tr>
@@ -174,7 +174,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 offset-3">
-                            <form class="text-center" method="post" action="#" th:action="@{/admin/edit}" th:object="${user}">
+                            <form class="text-center" th:action="@{/admin/users}" th:object="${user}" method="post">
                                 <div class="form-group"><label id="labelIDEdit" for="id-1"><strong>ID</strong><br></label><input readonly class="form-control" type="number" th:field="*{id}" id="id-1" name="id" required=""></div>
                                 <div class="form-group"><label id="labelFirstName-1" for="name"><strong>First name</strong></label><input class="form-control" type="text" th:field="*{name}" id="firstName-1" name="firstName" required=""></div>
                                 <div class="form-group"><label id="labelLastName-1" for="surname"><strong>Last name</strong></label><input class="form-control" type="text" th:field="*{surname}" id="lastName-1" name="lastName" required=""></div>
@@ -191,7 +191,9 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="submit">Edit</button></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="submit">Edit</button></div>
         </div>
     </div>
 </div>
