@@ -66,11 +66,11 @@ public class UserController {
 //        return "redirect:/user";
 //    }
 
-    @GetMapping("/admin/user_delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        userService.deleteById(id);
-        return "redirect:/user";
-    }
+//    @GetMapping("/admin/user_delete/{id}")
+//    public String deleteUser(@PathVariable("id") Long id) {
+//        userService.deleteById(id);
+//        return "redirect:/user";
+//    }
 
 //    @GetMapping("/admin/user_update/{id}")
 //    public String saveUserAndShow(@PathVariable("id") Long id, Model model) {
@@ -124,7 +124,19 @@ public class UserController {
         //User user = userConverter.fromUserDtoToUser(userService.findById(id));
         model.addAttribute("user", userDto);
         model.addAttribute("listRoles", roleRepository.findAll());
-        return "admin_page";
+        return "redirect:/admin/users";
+    }
+
+    @PostMapping("/admin/edit")
+    public String saveUser(UserDto userDto) {
+        userService.saveUser(userDto);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/admin/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteById(id);
+        return "redirect:/admin/users";
     }
 
 //    @PostMapping("/admin/edit")
