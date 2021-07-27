@@ -53,10 +53,12 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
+    @Override
     public Set<Role> getRolesFromList(List<String> roleList) {
         return roleList.stream().map(role -> roleRepository.findByName("ROLE_" + role)).collect(Collectors.toSet());
     }
 
+    @Override
     public UserDto updateUser(UserDto userDto, Long id) {
         UserDto existingUserDto = userConverter.fromUserToUserDto(userRepository.findById(id)
                 .orElseThrow(() -> new NoResultException("No User with: " + id + " present")));

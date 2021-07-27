@@ -127,13 +127,16 @@ public class UserController {
         return "redirect:/admin/users";
     }
 
-    @PostMapping("/admin/edit")
-    public String editUser(@ModelAttribute("user")UserDto userDto) {
+    @PostMapping("/admin/edit/{id}")
+    public String editUser(@ModelAttribute("user")UserDto userDto,
+                           @PathVariable("id") Long id) {
+        //userDto.setRoles(userService.getRolesFromList(rolesNameList));
+        //userService.updateUser(userDto, id);
         userService.saveUser(userDto);
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/admin/delete/{id}")
+    @PostMapping("/admin/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
         return "redirect:/admin/users";
