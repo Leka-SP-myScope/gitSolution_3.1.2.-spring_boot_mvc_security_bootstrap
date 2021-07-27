@@ -120,15 +120,15 @@ public class UserController {
 
     @GetMapping("/admin/edit/{id}")
     public String editUserAndShow(@PathVariable("id") Long id, Model model) {
-        UserDto userDto = userService.findById(id);
-        //User user = userConverter.fromUserDtoToUser(userService.findById(id));
-        model.addAttribute("user", userDto);
+        //UserDto userDto = userService.findById(id);
+        User user = userConverter.fromUserDtoToUser(userService.findById(id));
+        model.addAttribute("user", user);
         model.addAttribute("listRoles", roleRepository.findAll());
         return "redirect:/admin/users";
     }
 
     @PostMapping("/admin/edit")
-    public String saveUser(UserDto userDto) {
+    public String editUser(@ModelAttribute("user")UserDto userDto) {
         userService.saveUser(userDto);
         return "redirect:/admin/users";
     }
