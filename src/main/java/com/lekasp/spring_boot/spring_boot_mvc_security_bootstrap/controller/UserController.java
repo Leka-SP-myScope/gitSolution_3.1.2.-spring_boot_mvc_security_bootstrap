@@ -118,20 +118,25 @@ public class UserController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/admin/edit/{id}")
-    public String editUserAndShow(@PathVariable("id") Long id, Model model) {
-        //UserDto userDto = userService.findById(id);
-        User user = userConverter.fromUserDtoToUser(userService.findById(id));
-        model.addAttribute("user", user);
-        model.addAttribute("listRoles", roleRepository.findAll());
-        return "redirect:/admin/users";
-    }
+//    @GetMapping("/admin/edit/{id}")
+//    public String editUserAndShow(@PathVariable("id") Long id, Model model) {
+//        //UserDto userDto = userService.findById(id);
+//        User user = userConverter.fromUserDtoToUser(userService.findById(id));
+//        model.addAttribute("user", user);
+//        model.addAttribute("listRoles", roleRepository.findAll());
+//        return "redirect:/admin/users";
+//    }
 
     @PostMapping("/admin/edit/{id}")
     public String editUser(@ModelAttribute("user")UserDto userDto,
-                           @PathVariable("id") Long id) {
+                           @RequestParam("rolesNameList") List<String> rolesNameList) {
         //userDto.setRoles(userService.getRolesFromList(rolesNameList));
         //userService.updateUser(userDto, id);
+        //userService.saveUser(userDto);
+        System.out.println(userDto);
+        System.out.println(rolesNameList);
+        userDto.setRoles(userService.getRolesFromList(rolesNameList));
+        System.out.println(userDto);
         userService.saveUser(userDto);
         return "redirect:/admin/users";
     }
