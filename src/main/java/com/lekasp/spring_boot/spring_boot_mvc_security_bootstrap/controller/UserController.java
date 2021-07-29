@@ -127,17 +127,42 @@ public class UserController {
 //        return "redirect:/admin/users";
 //    }
 
+    //@ModelAttribute("user")UserDto userDto,
     @PostMapping("/admin/edit/{id}")
-    public String editUser(@ModelAttribute("user")UserDto userDto,
+    public String editUser(@ModelAttribute("user") UserDto userDto,
+                           @PathVariable Long id,
                            @RequestParam("rolesNameList") List<String> rolesNameList) {
         //userDto.setRoles(userService.getRolesFromList(rolesNameList));
         //userService.updateUser(userDto, id);
         //userService.saveUser(userDto);
+
+        //get user from DB by id
+//        UserDto existingUser = userService.findById(id);
+//        existingUser.setId(id);
+//        existingUser.setName(userDto.getName());
+//        existingUser.setSurname(userDto.getSurname());
+//        existingUser.setAge(userDto.getAge());
+//        existingUser.setEmail(userDto.getEmail());
+//        existingUser.setPassword(userDto.getPassword());
+
+        UserDto userFromDB = userService.findById(id);
+        System.out.println("Before edit = " + userFromDB);
+        UserDto existingUser = userService.updateUser(userDto, id);
+
         System.out.println(userDto);
+        //System.out.println("User from DB = " + userFromDB);
+        System.out.println("Existing User = " + existingUser);
         System.out.println(rolesNameList);
         userDto.setRoles(userService.getRolesFromList(rolesNameList));
+
+        existingUser.setRoles(userService.getRolesFromList(rolesNameList));
         System.out.println(userDto);
+
+        System.out.println("Existing User with Role = " + existingUser);
         userService.saveUser(userDto);
+
+        userService.saveUser(existingUser);
+
         return "redirect:/admin/users";
     }
 
