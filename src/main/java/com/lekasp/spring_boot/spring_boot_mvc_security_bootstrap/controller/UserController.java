@@ -112,9 +112,14 @@ public class UserController {
     @PostMapping("/admin/users")
     public String createUser(@ModelAttribute("user") UserDto userDto,
                              @RequestParam("rolesNameList") List<String> rolesNameList) {
+
+        System.out.println("Getting UserDto from controller = " + userDto);
+
         userDto.setRoles(userService.getRolesFromList(rolesNameList));
         userService.saveUser(userDto);
-        //System.out.println(userDto);
+
+        System.out.println(userDto);
+
         return "redirect:/admin/users";
     }
 
@@ -180,8 +185,14 @@ public class UserController {
         return "redirect:/admin/users";
     }
 
-    @PostMapping("/admin/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+//    @GetMapping("/admin/delete/{id}")
+//    public String deleteUser(@PathVariable("id") Long id) {
+//        userService.deleteById(id);
+//        return "redirect:/admin/users";
+//    }
+
+    @PostMapping("/admin/delete")
+    public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteById(id);
         return "redirect:/admin/users";
     }
