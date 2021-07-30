@@ -25,6 +25,4 @@ public interface UserService {
 
     public Set<Role> getRolesFromList(List<String> roleList);
 
-    public UserDto updateUser(UserDto userDto, Long id);
-
 }

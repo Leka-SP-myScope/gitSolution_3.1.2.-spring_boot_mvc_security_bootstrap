@@ -57,22 +57,4 @@ public class UserServiceImpl implements UserService {
     public Set<Role> getRolesFromList(List<String> roleList) {
         return roleList.stream().map(role -> roleRepository.findByName("ROLE_" + role)).collect(Collectors.toSet());
     }
-
-    @Override
-    public UserDto updateUser(UserDto userDto, Long id) {
-        System.out.println("User from Service = " + userDto);
-        UserDto existingUserDto = userConverter.fromUserToUserDto(userRepository.findById(id)
-                .orElseThrow(() -> new NoResultException("No User with: " + id + " present")));
-
-        existingUserDto.setName(userDto.getName());
-        existingUserDto.setSurname(userDto.getSurname());
-        existingUserDto.setPassword(userDto.getPassword());
-        existingUserDto.setAge(userDto.getAge());
-        existingUserDto.setEmail(userDto.getEmail());
-        existingUserDto.setRoles(userDto.getRoles());
-
-        System.out.println("Edit User from Service = " + existingUserDto);
-        userRepository.save(userConverter.fromUserDtoToUser(existingUserDto));
-        return existingUserDto;
-    }
 }
