@@ -127,8 +127,7 @@ public class UserController {
 //        return "redirect:/admin/users";
 //    }
 
-    //@ModelAttribute("user")UserDto userDto,
-    @PostMapping("/admin/edit/{id}")
+    /*@PostMapping("/admin/edit/{id}")
     public String editUser(@ModelAttribute("user") UserDto userDto,
                            @PathVariable Long id,
                            @RequestParam("rolesNameList") List<String> rolesNameList) {
@@ -163,6 +162,21 @@ public class UserController {
 
         userService.saveUser(existingUser);
 
+        return "redirect:/admin/users";
+    }*/
+
+    @PostMapping("/admin/edit")
+    public String editUser(@ModelAttribute("user") UserDto userDto,
+                           @RequestParam("rolesNameList") List<String> rolesNameList) {
+        System.out.println(userDto);
+
+        System.out.println(rolesNameList);
+
+        userDto.setRoles(userService.getRolesFromList(rolesNameList));
+
+        System.out.println(userDto);
+
+        userService.saveUser(userDto);
         return "redirect:/admin/users";
     }
 
