@@ -16,12 +16,6 @@ public class Role implements GrantedAuthority {
     @Column(name = "role", nullable = false, length = 45, unique = true)
     private String role;
 
-//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-//    //@ManyToOne(fetch = FetchType.LAZY)
-//    //@JoinColumn(name = "users_id")
-//    private Set<User> users = new HashSet<>();
-
-    //@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
@@ -74,24 +68,6 @@ public class Role implements GrantedAuthority {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-
-//    public Set<User> getUser() {
-//        return users;
-//    }
-//
-//    public void setUser(Set<User> users) {
-//        this.users = users;
-//    }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Role role1 = (Role) o;
-//        return id.equals(role1.id) &&
-//                role.equals(role1.role);
-//    }
-
 
     @Override
     public boolean equals(Object obj) {

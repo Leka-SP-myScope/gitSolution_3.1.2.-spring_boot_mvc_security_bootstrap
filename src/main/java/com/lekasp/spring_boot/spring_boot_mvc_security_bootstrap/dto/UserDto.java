@@ -86,10 +86,6 @@ public class UserDto {
         this.roles = roles;
     }
 
-    public void addRole(Role role) {
-        this.roles.add(role);
-    }
-
     public List<String> getRolesNameList() {
         return rolesNameList;
     }

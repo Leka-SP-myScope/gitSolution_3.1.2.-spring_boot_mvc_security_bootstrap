@@ -47,14 +47,16 @@
                                             </tr>
                                             </thead>
                                             <tbody class="text-center">
-                                            <tr th:each="message : ${allUser}">
-                                                <td class="border-left-0" th:text="${message.id}">Cell 1</td>
-                                                <td th:text="${message.name}">Cell 2</td>
-                                                <td th:text="${message.surname}">Cell 3</td>
-                                                <td th:text="${message.age}">Cell 4</td>
-                                                <td th:text="${message.email}">Cell 5</td>
-                                                <td class="border-right-0"
-                                                    th:text="${#strings.startsWith(message.roles,'ROLE_')}?${{message.roles}}:${#strings.replace(message.roles,'ROLE_','')}">Cell 6
+                                            <tr th:each="user : ${allUser}">
+                                                <td class="border-left-0" th:text="${user.id}"></td>
+                                                <td th:text="${user.name}"></td>
+                                                <td th:text="${user.surname}"></td>
+                                                <td th:text="${user.age}"></td>
+                                                <td th:text="${user.email}"></td>
+                                                <td class="border-right-0">
+                                                    <span th:each="role, iStat : ${user.roles}"
+                                                          th:text="!${iStat.last}?${#strings.substring(role.role,5)}+' ':${#strings.substring(role.role,5)}">
+                                                    </span>
                                                 </td>
                                             </tr>
                                             </tbody>

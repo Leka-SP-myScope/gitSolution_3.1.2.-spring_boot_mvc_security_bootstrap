@@ -27,11 +27,6 @@ public class UserController {
         this.roleRepository = roleRepository;
     }
 
-    @GetMapping
-    public String getFirstPage() {
-        return "users_list";
-    }
-
     @GetMapping("/login")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
                            @RequestParam(value = "logout", required = false) String logout,

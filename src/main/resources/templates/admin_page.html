@@ -69,8 +69,9 @@
                                                             <td th:text="${user.surname}">Cell 3</td>
                                                             <td th:text="${user.age}">Cell 4</td>
                                                             <td th:text="${user.email}">Cell 5</td>
-                                                            <td class="border-right-0"
-                                                                th:text="${#strings.startsWith(user.roles,'ROLE_')}?${{user.roles}}:${#strings.replace(user.roles,'ROLE_','')}">Cell 6
+                                                            <td class="border-right-0">
+                                                                <span th:each="role, iStat : ${user.roles}"
+                                                                th:text="!${iStat.last}?${#strings.substring(role.role,5)}+' ':${#strings.substring(role.role,5)}"></span>
                                                             </td>
                                                             <div sec:authorize="hasRole('ROLE_ADMIN')">
                                                                 <td>
@@ -103,7 +104,7 @@
                                                                                             <div class="form-group"><label id="labelLastName-1" for="surname"><strong>Last name</strong></label><input class="form-control" type="text" id="surname" name="surname" th:value="*{user.surname}" required=""></div>
                                                                                             <div class="form-group"><label id="labelAge-1" for="age"><strong>Age</strong></label><input class="form-control" type="number" id="age" name="age" th:value="*{user.age}" required=""></div>
                                                                                             <div class="form-group"><label id="labelEmail-1" for="email"><strong>Email</strong></label><input class="form-control" type="email" id="email" name="email" th:value="*{user.email}" required=""></div>
-                                                                                            <div class="form-group"><label id="password-1" for="password"><strong>Password</strong></label><input class="form-control" type="password" id="password" name="password" th:value="*{user.password}" required=""></div>
+                                                                                            <div class="form-group"><label id="password-1" for="password"><strong>Password</strong></label><input class="form-control" type="password" id="passwordAddNewUser-1" name="password" th:value="*{user.password}" required=""></div>
                                                                                             <div class="form-group"><label id="role-1" for="role"><strong>Role</strong></label><select class="form-control" multiple="multiple" th:field="*{user.rolesNameList}">
                                                                                                 <option th:each="role : ${listRoles}"
                                                                                                         th:value="${!role.getRole().startsWith('ROLE_')}? ${role.getRole()}: ${role.getRole().replaceFirst('ROLE_', '')}"
@@ -248,9 +249,9 @@
                                                 <td th:text="${user.surname}">Cell 3</td>
                                                 <td th:text="${user.age}">Cell 4</td>
                                                 <td th:text="${user.email}">Cell 5</td>
-                                                <td class="border-right-0"
-                                                    th:text="${#strings.startsWith(user.roles,'ROLE_')}?${{user.roles}}:${#strings.replace(user.roles,'ROLE_','')}">
-                                                    Cell 6
+                                                <td class="border-right-0">
+                                                    <span th:each="role, iStat : ${user.roles}"
+                                                          th:text="!${iStat.last}?${#strings.substring(role.role,5)}+' ':${#strings.substring(role.role,5)}"></span>
                                                 </td>
                                             </tr>
                                             </tbody>
