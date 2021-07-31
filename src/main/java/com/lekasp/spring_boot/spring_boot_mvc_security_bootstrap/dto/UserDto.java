@@ -15,15 +15,8 @@ public class UserDto {
     private String email;
     private Set<Role> roles;
     private List<String> rolesNameList = new ArrayList<>();
-    //private List<RoleDto> roleDtos;
-
-/*
-    Working with String value
-    private String rolesName;
-*/
 
     public UserDto() {
-        //this.roleDtos = new ArrayList<>();
     }
 
     public UserDto(Long id, String name, String surname, String password, int age, String email, Set<Role> roles, List<String> rolesNameList) {
@@ -85,18 +78,6 @@ public class UserDto {
         this.email = email;
     }
 
-//    public List<RoleDto> getRoleDtos() {
-//        return roleDtos;
-//    }
-//
-//    public void setRoleDtos(List<RoleDto> roleDtos) {
-//        this.roleDtos = roleDtos;
-//    }
-
-//    public void addRoleDto(RoleDto roleDto) {
-//        this.roleDtos.add(roleDto);
-//    }
-
     public Set<Role> getRoles() {
         return roles;
     }
@@ -108,15 +89,6 @@ public class UserDto {
     public void addRole(Role role) {
         this.roles.add(role);
     }
-
-    /* Working with String value
-//    public String getRolesName() {
-//        return rolesName;
-//    }
-//
-//    public void setRolesName(String rolesName) {
-//        this.rolesName = rolesName;
-//    }*/
 
     public List<String> getRolesNameList() {
         return rolesNameList;
