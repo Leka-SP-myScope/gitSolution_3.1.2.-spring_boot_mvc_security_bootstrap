@@ -133,11 +133,6 @@ tbody {
     background: var(--light);
 }
 
-.col-md-10 {
-    max-height: 100vh;
-    height: 100vh;
-}
-
 h2 {
     margin-top: 10px;
 }
@@ -312,8 +307,6 @@ b, strong {
     padding: 0px;
     padding-right: 0px;
     padding-left: 0px;
-    height: 100vh;
-    max-height: 100vh;
     padding-top: 0px;
 }
 

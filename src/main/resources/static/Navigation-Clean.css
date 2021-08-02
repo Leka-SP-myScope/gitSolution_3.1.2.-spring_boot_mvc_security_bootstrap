@@ -90,6 +90,7 @@
 }
 
 .table-responsive {
+  background: var(--white);
   margin-right: 0;
   margin-left: 0;
 }
@@ -175,12 +176,7 @@ label {
 }
 
 .nav.nav-pills {
-  margin-top: 10px;
-}
-
-.col-md-10 {
-  max-height: 100vh;
-  height: 100vh;
+  margin-top: 0px;
 }
 
 h2 {
@@ -253,14 +249,3 @@ tr {
 #v-pills-user {
   width: 100%;
 }
-
-.col-md-10 {
-  width: 100%;
-  max-width: 100%;
-  padding-right: 0px;
-  padding-left: 0px;
-  padding-top: 10px;
-  max-height: 100vh;
-  height: 100vh;
-}
-
