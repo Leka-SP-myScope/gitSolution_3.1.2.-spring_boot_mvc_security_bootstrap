@@ -38,12 +38,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findById(Long id) {
-        return userConverter.fromUserToUserDto(userRepository.findById(id)
-                .orElseThrow(() -> new NoResultException("No User with: " + id + " present")));
-    }
-
-    @Override
     public void saveUser(UserDto userDto) {
         userRepository.save(userConverter.fromUserDtoToUser(userDto));
     }

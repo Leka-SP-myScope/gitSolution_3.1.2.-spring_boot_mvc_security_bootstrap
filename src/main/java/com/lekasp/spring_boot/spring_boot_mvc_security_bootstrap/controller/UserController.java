@@ -21,7 +21,7 @@ public class UserController {
     private final RoleRepository roleRepository;
 
     @Autowired
-    public UserController(@Qualifier("userServiceImpl") UserService userService,
+    public UserController(UserService userService,
                           RoleRepository roleRepository) {
         this.userService = userService;
         this.roleRepository = roleRepository;
@@ -38,7 +38,6 @@ public class UserController {
 
     @GetMapping("/user")
     public String getAllUser(Model model) {
-        List<UserDto> allUser = userService.getAllUser();
         model.addAttribute("allUser", userService.getAllUser());
         return "user_page";
     }
