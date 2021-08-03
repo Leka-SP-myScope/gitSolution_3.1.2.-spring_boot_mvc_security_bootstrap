@@ -1,7 +1,10 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.controller;
 
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.RoleRepository;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.UserRepository;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserConverter;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,18 +16,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
     private final RoleRepository roleRepository;
+    private final UserConverter userConverter;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserController(UserService userService,
-                          RoleRepository roleRepository) {
+                          RoleRepository roleRepository,
+                          UserConverter userConverter,
+                          UserRepository userRepository) {
         this.userService = userService;
         this.roleRepository = roleRepository;
+        this.userConverter = userConverter;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/login")
@@ -38,13 +48,19 @@ public class UserController {
 
     @GetMapping("/user")
     public String getAllUser(Model model) {
-        model.addAttribute("allUser", userService.getAllUser());
+        List<UserDto> allUsers = userRepository.findAll().stream()
+                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+        //UserDto userDto = userConverter.fromUserToUserDto(userService.getAllUser());
+
+        model.addAttribute("allUser", allUsers);
         return "user_page";
     }
 
     @GetMapping("/admin/users")
     public String getAllUser2(Model model) {
-        model.addAttribute("allUser", userService.getAllUser());
+        List<UserDto> allUsers = userRepository.findAll().stream()
+                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+        model.addAttribute("allUser", allUsers);
         model.addAttribute("listRoles", roleRepository.findAll());
         model.addAttribute("user", new UserDto());
         return "admin_page";

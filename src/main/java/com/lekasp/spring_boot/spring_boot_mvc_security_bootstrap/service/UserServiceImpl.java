@@ -2,6 +2,7 @@ package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
+import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.RoleRepository;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,15 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
     }
 
+//    @Override
+//    public List<UserDto> getAllUser() {
+//        return userRepository.findAll().stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+//    }
+
     @Override
-    public List<UserDto> getAllUser() {
-        return userRepository.findAll().stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+    public List<User> getAllUser() {
+        return userRepository.findAll();
+        //return userRepository.findAll().stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
     }
 
     @Override
