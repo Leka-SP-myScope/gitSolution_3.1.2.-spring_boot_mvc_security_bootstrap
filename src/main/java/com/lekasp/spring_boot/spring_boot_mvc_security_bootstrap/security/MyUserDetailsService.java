@@ -28,4 +28,20 @@ public class MyUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("The entered username : "
                         + username + " is incorrect. Please, change your username"));
     }
+//    Working case******************************************************************************************************
+    /*private UserService userService;
+    private UserConverter userConverter;
+
+    @Autowired
+    public MyUserDetailsService(UserService userService, UserConverter userConverter) {
+        this.userService = userService;
+        this.userConverter = userConverter;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return Optional.of(userConverter.fromUserDtoToUser(userService.getUserByName(username)))
+                .orElseThrow(() -> new UsernameNotFoundException("The entered username : "
+                        + username + " is incorrect. Please, change your username"));
+    }*/
 }
