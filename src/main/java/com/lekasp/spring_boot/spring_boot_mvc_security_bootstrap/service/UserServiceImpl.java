@@ -1,6 +1,5 @@
 package com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.service;
 
-import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.dto.UserDto;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.Role;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.model.User;
 import com.lekasp.spring_boot.spring_boot_mvc_security_bootstrap.repository.RoleRepository;
@@ -17,36 +16,28 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final UserConverter userConverter;
     private final RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
-        this.userConverter = userConverter;
         this.roleRepository = roleRepository;
     }
-
-//    @Override
-//    public List<UserDto> getAllUser() {
-//        return userRepository.findAll().stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-//    }
 
     @Override
     public List<User> getAllUser() {
         return userRepository.findAll();
-        //return userRepository.findAll().stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
     }
 
     @Override
-    public UserDto getUserByName(String name) {
-        return userConverter.fromUserToUserDto(userRepository.getUserByName(name)
-                .orElseThrow(() -> new NoResultException("No User by: " + name + " present")));
+    public User getUserByName(String name) {
+        return userRepository.getUserByName(name)
+                .orElseThrow(() -> new NoResultException("No User by: " + name + " present"));
     }
 
     @Override
-    public void saveUser(UserDto userDto) {
-        userRepository.save(userConverter.fromUserDtoToUser(userDto));
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
     @Override

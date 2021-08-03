@@ -7,10 +7,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
+//    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.roles IN ('ROLE_ADMIN', 'ROLE_USER')")
+//    List<User> findAllUsers();
 
     @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email = :email")
     Optional<User> getUserByName(@Param("email") String email);

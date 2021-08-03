@@ -14,17 +14,15 @@ import java.util.Optional;
 public class MyUserDetailsService implements UserDetailsService {
 
     private UserService userService;
-    private UserConverter userConverter;
 
     @Autowired
-    public MyUserDetailsService(UserService userService, UserConverter userConverter) {
+    public MyUserDetailsService(UserService userService) {
         this.userService = userService;
-        this.userConverter = userConverter;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return Optional.of(userConverter.fromUserDtoToUser(userService.getUserByName(username)))
+        return Optional.of(userService.getUserByName(username))
                 .orElseThrow(() -> new UsernameNotFoundException("The entered username : "
                         + username + " is incorrect. Please, change your username"));
     }

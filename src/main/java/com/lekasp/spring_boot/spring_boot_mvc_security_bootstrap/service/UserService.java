@@ -13,9 +13,13 @@ public interface UserService {
 
     List<User> getAllUser();
 
-    UserDto getUserByName(String name);
+    //UserDto getUserByName(String name);
 
-    void saveUser(UserDto userDto);
+    User getUserByName(String name);
+
+    //void saveUser(UserDto userDto);
+
+    void saveUser(User user);
 
     void deleteById(Long id);
 

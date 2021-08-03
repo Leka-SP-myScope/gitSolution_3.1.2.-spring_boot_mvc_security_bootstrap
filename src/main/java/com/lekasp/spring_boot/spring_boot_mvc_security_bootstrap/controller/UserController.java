@@ -25,6 +25,7 @@ public class UserController {
     private final RoleRepository roleRepository;
     private final UserConverter userConverter;
     private final UserRepository userRepository;
+    private List<UserDto> allUsers;
 
     @Autowired
     public UserController(UserService userService,
@@ -47,18 +48,20 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String getAllUser(Model model) {
-        List<UserDto> allUsers = userRepository.findAll().stream()
+    public String getAllUsersForUser(Model model) {
+        allUsers = userRepository.findAll().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-        //UserDto userDto = userConverter.fromUserToUserDto(userService.getAllUser());
-
         model.addAttribute("allUser", allUsers);
         return "user_page";
     }
 
     @GetMapping("/admin/users")
-    public String getAllUser2(Model model) {
-        List<UserDto> allUsers = userRepository.findAll().stream()
+    public String getAllUsersForAdmin(Model model) {
+//        allUsers = userRepository.findAllUsers().stream()
+//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+
+
+        allUsers = userRepository.findAll().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
         model.addAttribute("allUser", allUsers);
         model.addAttribute("listRoles", roleRepository.findAll());
@@ -69,8 +72,9 @@ public class UserController {
     @PostMapping("/admin/users")
     public String createUser(@ModelAttribute("user") UserDto userDto,
                              @RequestParam("rolesNameList") List<String> rolesNameList) {
-        userDto.setRoles(userService.getRolesFromList(rolesNameList));
-        userService.saveUser(userDto);
+        User user = userConverter.fromUserDtoToUser(userDto);
+        user.setRoles(userService.getRolesFromList(rolesNameList));
+        userService.saveUser(user);
         return "redirect:/admin/users";
     }
 
