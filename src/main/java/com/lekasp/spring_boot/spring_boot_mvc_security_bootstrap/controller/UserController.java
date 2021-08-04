@@ -52,7 +52,10 @@ public class UserController {
 //        allUsers = userRepository.findAllUsers().stream()
 //                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
 
-        allUsers = userRepository.findAll().stream()
+//        allUsers = userRepository.findAll().stream()
+//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+
+        allUsers = userService.getAllUser().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
 
 //        allUsers = userRepository.findAll().stream()
@@ -66,8 +69,11 @@ public class UserController {
 //        allUsers = userRepository.findAllUsers().stream()
 //                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
 
-        allUsers = userRepository.findAll().stream()
+        allUsers = userService.getAllUser().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+
+//        allUsers = userRepository.findAll().stream()
+//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
 
 
 //        allUsers = userRepository.findAll().stream()
