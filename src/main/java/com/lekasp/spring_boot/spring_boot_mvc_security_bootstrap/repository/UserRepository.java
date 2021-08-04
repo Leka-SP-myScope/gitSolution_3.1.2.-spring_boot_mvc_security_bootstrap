@@ -13,12 +13,15 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-//    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.roles IN ('ROLE_ADMIN', 'ROLE_USER')")
+//    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles")
 //    List<User> findAllUsers();
+
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles")
+    List<User> findAll();
 
     @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email = :email")
     Optional<User> getUserByName(@Param("email") String email);
 
-//    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email = :email")
-//    UserDetails getUserByName(@Param("email") String email);
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email = :email")
+    UserDetails loadUserByUsername(@Param("email") String email);
 }

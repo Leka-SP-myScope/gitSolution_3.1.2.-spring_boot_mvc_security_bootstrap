@@ -49,8 +49,14 @@ public class UserController {
 
     @GetMapping("/user")
     public String getAllUsersForUser(Model model) {
+//        allUsers = userRepository.findAllUsers().stream()
+//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+
         allUsers = userRepository.findAll().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+
+//        allUsers = userRepository.findAll().stream()
+//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
         model.addAttribute("allUser", allUsers);
         return "user_page";
     }
@@ -60,9 +66,12 @@ public class UserController {
 //        allUsers = userRepository.findAllUsers().stream()
 //                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
 
-
         allUsers = userRepository.findAll().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
+
+
+//        allUsers = userRepository.findAll().stream()
+//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
         model.addAttribute("allUser", allUsers);
         model.addAttribute("listRoles", roleRepository.findAll());
         model.addAttribute("user", new UserDto());
