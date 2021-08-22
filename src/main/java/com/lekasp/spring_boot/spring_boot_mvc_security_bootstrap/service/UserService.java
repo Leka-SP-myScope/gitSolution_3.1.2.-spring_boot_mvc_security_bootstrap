@@ -9,30 +9,13 @@ import java.util.Set;
 
 public interface UserService {
 
-    //List<UserDto> getAllUser();
-
     List<User> getAllUser();
 
-    //UserDto getUserByName(String name);
-
     User getUserByName(String name);
-
-    //void saveUser(UserDto userDto);
 
     void saveUser(User user);
 
     void deleteById(Long id);
 
     Set<Role> getRolesFromList(List<String> roleList);
-
-//    Working case******************************************************************************************************
-    /*List<UserDto> getAllUser();
-
-    UserDto getUserByName(String name);
-
-    void saveUser(UserDto userDto);
-
-    void deleteById(Long id);
-
-    Set<Role> getRolesFromList(List<String> roleList);*/
 }

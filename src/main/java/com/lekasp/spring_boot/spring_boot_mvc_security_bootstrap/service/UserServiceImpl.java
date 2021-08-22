@@ -49,42 +49,4 @@ public class UserServiceImpl implements UserService {
     public Set<Role> getRolesFromList(List<String> roleList) {
         return roleList.stream().map(role -> roleRepository.findByName("ROLE_" + role)).collect(Collectors.toSet());
     }
-
-//    Working case******************************************************************************************************
-    /*private final UserRepository userRepository;
-    private final UserConverter userConverter;
-    private final RoleRepository roleRepository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserConverter userConverter, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.userConverter = userConverter;
-        this.roleRepository = roleRepository;
-    }
-
-    @Override
-    public List<UserDto> getAllUser() {
-        return userRepository.findAll().stream().map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-    }
-
-    @Override
-    public UserDto getUserByName(String name) {
-        return userConverter.fromUserToUserDto(userRepository.getUserByName(name)
-                .orElseThrow(() -> new NoResultException("No User by: " + name + " present")));
-    }
-
-    @Override
-    public void saveUser(UserDto userDto) {
-        userRepository.save(userConverter.fromUserDtoToUser(userDto));
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
-    }
-
-    @Override
-    public Set<Role> getRolesFromList(List<String> roleList) {
-        return roleList.stream().map(role -> roleRepository.findByName("ROLE_" + role)).collect(Collectors.toSet());
-    }*/
 }

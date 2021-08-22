@@ -49,35 +49,16 @@ public class UserController {
 
     @GetMapping("/user")
     public String getAllUsersForUser(Model model) {
-//        allUsers = userRepository.findAllUsers().stream()
-//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-
-//        allUsers = userRepository.findAll().stream()
-//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-
         allUsers = userService.getAllUser().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-
-//        allUsers = userRepository.findAll().stream()
-//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
         model.addAttribute("allUser", allUsers);
         return "user_page";
     }
 
     @GetMapping("/admin/users")
     public String getAllUsersForAdmin(Model model) {
-//        allUsers = userRepository.findAllUsers().stream()
-//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-
         allUsers = userService.getAllUser().stream()
                 .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-
-//        allUsers = userRepository.findAll().stream()
-//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
-
-
-//        allUsers = userRepository.findAll().stream()
-//                .map(userConverter::fromUserToUserDto).collect(Collectors.toList());
         model.addAttribute("allUser", allUsers);
         model.addAttribute("listRoles", roleRepository.findAll());
         model.addAttribute("user", new UserDto());
@@ -98,52 +79,4 @@ public class UserController {
         userService.deleteById(id);
         return "redirect:/admin/users";
     }
-
-//    Working case******************************************************************************************************
-    /*private final UserService userService;
-    private final RoleRepository roleRepository;
-
-    @Autowired
-    public UserController(UserService userService,
-                          RoleRepository roleRepository) {
-        this.userService = userService;
-        this.roleRepository = roleRepository;
-    }
-
-    @GetMapping("/login")
-    public String getLogin(@RequestParam(value = "error", required = false) String error,
-                           @RequestParam(value = "logout", required = false) String logout,
-                           Model model) {
-        model.addAttribute("error", error != null);
-        model.addAttribute("logout", logout != null);
-        return "login";
-    }
-
-    @GetMapping("/user")
-    public String getAllUser(Model model) {
-        model.addAttribute("allUser", userService.getAllUser());
-        return "user_page";
-    }
-
-    @GetMapping("/admin/users")
-    public String getAllUser2(Model model) {
-        model.addAttribute("allUser", userService.getAllUser());
-        model.addAttribute("listRoles", roleRepository.findAll());
-        model.addAttribute("user", new UserDto());
-        return "admin_page";
-    }
-
-    @PostMapping("/admin/users")
-    public String createUser(@ModelAttribute("user") UserDto userDto,
-                             @RequestParam("rolesNameList") List<String> rolesNameList) {
-        userDto.setRoles(userService.getRolesFromList(rolesNameList));
-        userService.saveUser(userDto);
-        return "redirect:/admin/users";
-    }
-
-    @PostMapping("/admin/delete")
-    public String deleteUser(@RequestParam("id") Long id) {
-        userService.deleteById(id);
-        return "redirect:/admin/users";
-    }*/
 }
